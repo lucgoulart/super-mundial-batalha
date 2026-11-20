@@ -1,0 +1,232 @@
+
+<div class="home-page">
+
+  <!-- BANNER PRINCIPAL -->
+  <section class="hero">
+
+    <div class="hero-overlay"></div>
+
+    <div class="hero-content">
+
+      <div class="hero-text">
+
+        <div class="hero-eyebrow">
+          <span>FC 26</span>
+          <i></i>
+          <span>32 JOGADORES</span>
+          <i></i>
+          <span>8 GRUPOS</span>
+        </div>
+
+        <h1>
+          SUPER MUNDIAL
+          <strong>BATALHA DOS 12</strong>
+        </h1>
+
+        <p class="hero-description">
+          Cada gol, ponto e vitória pode mudar o caminho até a taça.
+        </p>
+
+        <!-- INSCRIÇÃO E PREMIAÇÃO -->
+<div class="prize-info">
+
+  <div class="prize-item">
+    <span class="prize-label">TAXA DE INSCRIÇÃO</span>
+    <strong>R$ 35,00</strong>
+    <span class="prize-description">Por jogador</span>
+  </div>
+
+  <div class="prize-divider"></div>
+
+  <div class="prize-item champion-prize">
+    <span class="prize-label">PREMIAÇÃO DO CAMPEÃO</span>
+    <strong>R$ 600,00</strong>
+    <span class="prize-description">O prêmio máximo da batalha</span>
+  </div>
+
+</div>
+
+        <!-- BOTÕES PRINCIPAIS -->
+        <div class="hero-actions">
+
+          <a routerLink="/formato" class="btn-primary">
+            <span class="button-icon">▤</span>
+            VER FORMATO
+            <span class="button-arrow">›</span>
+          </a>
+
+          <a routerLink="/ranking" class="btn-secondary">
+            <span class="button-icon">▥</span>
+            RANKING GERAL
+            <span class="button-arrow">›</span>
+          </a>
+
+          <a routerLink="/grupos" class="btn-secondary">
+            <span class="button-icon">♟</span>
+            GRUPOS
+            <span class="button-arrow">›</span>
+          </a>
+
+      <button
+  *ngIf="!mataMataLiberado"
+  type="button"
+  class="btn-disabled"
+  disabled
+  title="O mata-mata será liberado após a conclusão das 96 partidas da fase de grupos">
+
+  <span class="button-icon">⚔</span>
+  MATA-MATA
+  <span class="coming-soon">EM BREVE</span>
+
+</button>
+
+<a
+  *ngIf="mataMataLiberado"
+  routerLink="/mata-mata"
+  class="btn-secondary">
+
+  <span class="button-icon">⚔</span>
+  MATA-MATA
+  <span class="button-arrow">›</span>
+
+</a>
+
+        </div>
+
+        <div class="hero-slogan">
+          <span></span>
+          MAIS QUE UM JOGO, UMA BATALHA.
+          <span></span>
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- INDICADORES DO CAMPEONATO -->
+    <div class="statistics">
+
+      <div class="stat-card">
+        <span class="stat-icon">♟</span>
+        <div class="stat-info">
+          <strong>32</strong>
+          <span>JOGADORES</span>
+        </div>
+      </div>
+
+      <div class="stat-card">
+        <span class="stat-icon">♟</span>
+        <div class="stat-info">
+          <strong>8</strong>
+          <span>GRUPOS</span>
+        </div>
+      </div>
+
+      <div class="stat-card">
+        <span class="stat-icon">▥</span>
+        <div class="stat-info">
+          <strong>24</strong>
+          <span>AVANÇAM</span>
+        </div>
+      </div>
+
+      <div class="stat-card">
+        <span class="stat-icon">🏆</span>
+        <div class="stat-info">
+          <strong>1</strong>
+          <span>CAMPEÃO</span>
+        </div>
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- JORNADA DO CAMPEONATO -->
+  <section class="tournament-journey">
+
+    <div class="journey-header">
+      <h2>A JORNADA DO TORNEIO</h2>
+      <span>DA FASE DE GRUPOS ATÉ A GLÓRIA</span>
+    </div>
+
+    <div class="journey-content">
+
+      <div class="journey-step">
+        <div class="step-icon">♟</div>
+
+        <div class="step-info">
+          <strong>FASE DE GRUPOS</strong>
+          <span>32 JOGADORES</span>
+          <span>8 GRUPOS</span>
+        </div>
+      </div>
+
+      <span class="journey-arrow">›</span>
+
+      <div class="journey-step">
+        <div class="step-icon">▤</div>
+
+        <div class="step-info">
+          <strong>PLAYOFF DOS 3º</strong>
+          <span>OS MELHORES</span>
+          <span>TERCEIROS SEGUEM</span>
+        </div>
+      </div>
+
+      <span class="journey-arrow">›</span>
+
+      <div class="journey-step">
+        <div class="step-icon">▥</div>
+
+        <div class="step-info">
+          <strong>RANKING DE ACESSO</strong>
+          <span>DESEMPENHO</span>
+          <span>TAMBÉM CONTA</span>
+        </div>
+      </div>
+
+      <span class="journey-arrow">›</span>
+
+      <div class="journey-step">
+        <div class="step-icon">🏆</div>
+
+        <div class="step-info">
+          <strong>OITAVAS</strong>
+          <span>OS 12 MELHORES</span>
+          <span>VÃO DIRETO</span>
+        </div>
+      </div>
+
+      <span class="journey-arrow">›</span>
+
+      <div class="journey-step">
+        <div class="step-icon">⚔</div>
+
+        <div class="step-info">
+          <strong>MATA-MATA</strong>
+          <span>A CAMINHO</span>
+          <span>DA TAÇA</span>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="journey-highlight">
+
+      <span class="highlight-icon">♛</span>
+
+      <div>
+        <strong>A campanha importa</strong>
+        <p>O desempenho também faz a diferença na busca pela glória.</p>
+      </div>
+
+    </div>
+
+    <div class="journey-footer">
+      TALENTO COMPETE. GIGANTES FAZEM HISTÓRIA.
+    </div>
+
+  </section>
+
+</div>

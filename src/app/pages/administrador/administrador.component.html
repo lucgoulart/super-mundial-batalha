@@ -1,0 +1,188 @@
+<div class="admin-container">
+
+  <!-- TELA DE ACESSO -->
+  <div class="access-overlay" *ngIf="!autenticado">
+    <div class="access-modal">
+
+      <div class="modal-icon">
+        <span>12</span>
+      </div>
+
+      <span class="subtitle">ÁREA RESTRITA</span>
+
+      <h1>ADMINISTRADOR</h1>
+
+      <p>
+        Digite o código de acesso para entrar no painel administrativo
+        da Batalha dos 12.
+      </p>
+
+      <form (ngSubmit)="validarCodigo()">
+        <input
+          type="password"
+          name="codigo"
+          [(ngModel)]="codigo"
+          placeholder="DIGITE SEU CÓDIGO"
+          autocomplete="off"
+        />
+
+        <span class="error-message" *ngIf="erro">
+          Código inválido. Verifique e tente novamente.
+        </span>
+
+        <button type="submit" [disabled]="carregando">
+          {{ carregando ? 'VALIDANDO...' : 'ACESSAR PAINEL' }}
+        </button>
+      </form>
+
+      <span class="security-text">
+        ACESSO EXCLUSIVO AO ADMINISTRADOR
+      </span>
+
+    </div>
+  </div>
+
+  <!-- DASHBOARD -->
+  <div class="dashboard" *ngIf="autenticado">
+
+    <!-- MENU LATERAL -->
+    <aside class="sidebar">
+
+      <div class="sidebar-brand">
+        <div class="brand-icon">12</div>
+
+        <div class="brand-info">
+          <strong>BATALHA DOS 12</strong>
+          <span>ADMINISTRAÇÃO</span>
+        </div>
+      </div>
+
+      <div class="sidebar-section">
+
+        <span class="menu-label">MENU PRINCIPAL</span>
+
+        <!-- VISÃO GERAL -->
+        <div
+          class="menu-item"
+          routerLink="/administrador"
+          [routerLinkActiveOptions]="{ exact: true }"
+          routerLinkActive="active">
+
+          <span class="menu-icon">▦</span>
+          <span>Visão geral</span>
+
+        </div>
+
+        <!-- JOGADORES -->
+        <div
+          class="menu-item"
+          routerLink="/administrador/administra-jogadores"
+          routerLinkActive="active">
+
+          <span class="menu-icon">♟</span>
+          <span>Jogadores</span>
+
+        </div>
+
+        <!-- PARTIDAS -->
+        <div
+          class="menu-item"
+          routerLink="/administrador/administra-partidas"
+          routerLinkActive="active">
+
+          <span class="menu-icon">⚽</span>
+          <span>Partidas e resultados</span>
+
+        </div>
+
+        <!-- NOTÍCIAS -->
+        <div
+          class="menu-item"
+          routerLink="/administrador/noticias"
+          routerLinkActive="active">
+
+          <span class="menu-icon">▤</span>
+          <span>Notícias</span>
+
+        </div>
+
+        <!-- CAMPEÕES -->
+        <div
+          class="menu-item"
+          routerLink="/administrador/campeoes"
+          routerLinkActive="active">
+
+          <span class="menu-icon">🏆</span>
+          <span>Campeões</span>
+
+        </div>
+
+      </div>
+
+      <div class="sidebar-footer">
+        <span class="online-indicator"></span>
+        SISTEMA ADMINISTRATIVO
+        <small>BATALHA DOS 12</small>
+      </div>
+
+    </aside>
+
+    <!-- CONTEÚDO PRINCIPAL -->
+    <main class="dashboard-content">
+
+      <!-- CABEÇALHO -->
+      <header class="topbar">
+
+        <div>
+          <span class="topbar-subtitle">
+            BATALHA DOS 12 / ADMINISTRAÇÃO
+          </span>
+
+          <h1>
+          
+            ADMINISTRAÇÃO
+          </h1>
+        </div>
+
+        <div class="admin-profile">
+
+          <div class="profile-icon">A</div>
+
+          <div>
+            <strong>Administrador</strong>
+            <span>Controle do campeonato</span>
+          </div>
+
+          <button
+            class="btn-logout"
+            type="button"
+            (click)="sair()"
+            title="Sair do painel">
+
+            <span class="material-icons">logout</span>
+
+          </button>
+
+        </div>
+
+      </header>
+
+      <!-- CONTEÚDO DAS ROTAS FILHAS -->
+      <router-outlet></router-outlet>
+
+      <!-- RODAPÉ -->
+      <footer class="dashboard-footer">
+
+        <span>BATALHA DOS 12</span>
+
+        <span>
+          PAINEL ADMINISTRATIVO • TODOS OS DIREITOS RESERVADOS
+        </span>
+
+      </footer>
+
+    </main>
+
+  </div>
+
+</div>

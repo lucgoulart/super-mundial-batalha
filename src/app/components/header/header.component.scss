@@ -1,0 +1,389 @@
+
+.main-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 88px;
+  z-index: 1000;
+
+  background: rgba(5, 9, 15, 0.96);
+  border-bottom: 1px solid rgba(218, 177, 83, 0.35);
+  backdrop-filter: blur(12px);
+
+  .header-container {
+    max-width: 1600px;
+    height: 100%;
+    margin: 0 auto;
+    padding: 0 35px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 35px;
+  }
+
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    text-decoration: none;
+    flex-shrink: 0;
+
+    .brand-logo {
+      width: 55px;
+      height: 65px;
+      flex: 0 0 55px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+
+      .brand-logo-img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        max-width: 100%;
+        max-height: 100%;
+        object-fit: contain;
+        object-position: center;
+      }
+    }
+
+    .brand-info {
+      h2 {
+        color: #e7c36e;
+        font-size: 17px;
+        font-weight: 800;
+        margin: 0 0 4px;
+        letter-spacing: 1px;
+      }
+
+      span {
+        color: #c5c7ce;
+        font-size: 11px;
+        letter-spacing: 2px;
+      }
+    }
+  }
+
+  .main-nav {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 22px;
+    overflow-x: auto;
+
+    a {
+      position: relative;
+      color: #c9cbd1;
+      text-decoration: none;
+      font-size: 12px;
+      font-weight: 700;
+      white-space: nowrap;
+      padding: 12px 0;
+      transition: color 0.3s ease;
+
+      &:hover,
+      &.active {
+        color: #f2d17b;
+      }
+
+      &.active::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 2px;
+        background: #e8c46c;
+        box-shadow: 0 0 10px rgba(232, 196, 108, 0.6);
+      }
+    }
+  }
+}
+
+// Botão do menu hambúrguer
+
+.menu-toggle {
+  display: none;
+  background: transparent;
+  border: 1px solid rgba(218, 177, 83, 0.5);
+  border-radius: 6px;
+  padding: 10px 12px;
+  color: #e8c46c;
+  cursor: pointer;
+  align-items: center;
+  gap: 10px;
+
+  .menu-label {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1px;
+  }
+
+  .hamburger {
+    width: 22px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+
+    span {
+      width: 100%;
+      height: 2px;
+      background: #e8c46c;
+      transition: 0.3s;
+    }
+
+    &.open {
+      span:first-child {
+        transform: translateY(7px) rotate(45deg);
+      }
+
+      span:nth-child(2) {
+        opacity: 0;
+      }
+
+      span:last-child {
+        transform: translateY(-7px) rotate(-45deg);
+      }
+    }
+  }
+}
+
+// Tablet
+
+@media (max-width: 1200px) {
+  .main-header {
+    .header-container {
+      padding: 0 20px;
+      gap: 20px;
+    }
+
+    .main-nav {
+      gap: 16px;
+    }
+  }
+}
+
+// Mobile
+
+@media (max-width: 900px) {
+  .main-header {
+    height: 76px;
+
+    .header-container {
+      flex-direction: row;
+      justify-content: space-between;
+      padding: 0 18px;
+      gap: 10px;
+      position: relative;
+    }
+
+    .brand {
+      .brand-logo {
+        width: 48px;
+        height: 56px;
+        flex-basis: 48px;
+      }
+
+      .brand-info {
+        h2 {
+          font-size: 14px;
+        }
+
+        span {
+          font-size: 9px;
+        }
+      }
+    }
+
+    .menu-toggle {
+      display: flex;
+    }
+
+    .main-nav {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      width: 100%;
+      max-height: calc(100vh - 76px);
+      overflow-y: auto;
+      background: rgba(5, 9, 15, 0.99);
+      border-top: 1px solid rgba(218, 177, 83, 0.3);
+      padding: 12px 20px 20px;
+      flex-direction: column;
+      align-items: stretch;
+      gap: 0;
+
+      &.menu-open {
+        display: flex;
+      }
+
+      a {
+        padding: 16px 10px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        font-size: 13px;
+
+        &.active::after {
+          width: 3px;
+          height: 65%;
+          top: 17%;
+          bottom: auto;
+          left: 0;
+        }
+      }
+    }
+  }
+}
+
+// Celulares pequenos
+
+@media (max-width: 480px) {
+  .main-header {
+    .header-container {
+      padding: 0 12px;
+    }
+
+    .brand {
+      gap: 9px;
+
+      .brand-logo {
+        width: 42px;
+        height: 50px;
+        flex-basis: 42px;
+      }
+
+      .brand-info {
+        h2 {
+          font-size: 12px;
+        }
+
+        span {
+          font-size: 8px;
+          letter-spacing: 1px;
+        }
+      }
+    }
+
+    .menu-toggle {
+      padding: 9px 10px;
+    }
+  }
+}
+/* =========================================
+   MATA-MATA BLOQUEADO
+========================================= */
+
+.mata-mata-bloqueado {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+
+  color: rgba(255, 255, 255, 0.35);
+
+  cursor: not-allowed;
+  user-select: none;
+
+  white-space: nowrap;
+}
+
+.mata-mata-nome {
+  display: inline-block;
+}
+
+.mata-mata-lock {
+  font-size: 10px;
+  opacity: 0.7;
+}
+
+.mata-mata-mobile-status {
+  display: none;
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+/* =========================================
+   MATA-MATA BLOQUEADO
+========================================= */
+
+.mata-mata-bloqueado {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+
+  color: rgba(255, 255, 255, 0.35);
+
+  cursor: not-allowed;
+  user-select: none;
+
+  white-space: nowrap;
+}
+
+.mata-mata-lock {
+  font-size: 10px;
+  opacity: 0.65;
+}
+
+.mata-mata-mobile-status {
+  display: none;
+}
+
+
+/* =========================================
+   MENU HAMBÚRGUER
+========================================= */
+
+@media (max-width: 768px) {
+
+  .mata-mata-bloqueado {
+    width: 100%;
+
+    display: flex;
+    align-items: center;
+
+    padding: 14px 20px;
+
+    box-sizing: border-box;
+
+    color: rgba(255, 255, 255, 0.38);
+  }
+
+  .mata-mata-nome {
+    flex: 1;
+  }
+
+  .mata-mata-lock {
+    margin-right: 10px;
+
+    font-size: 11px;
+  }
+
+  .mata-mata-mobile-status {
+    display: inline-flex;
+    align-items: center;
+
+    padding: 4px 8px;
+
+    border-radius: 4px;
+
+    border: 1px solid rgba(201, 162, 39, 0.35);
+
+    background: rgba(201, 162, 39, 0.08);
+
+    color: #c9a227;
+
+    font-size: 8px;
+    font-weight: 700;
+
+    letter-spacing: 0.5px;
+
+    white-space: nowrap;
+  }
+
+}

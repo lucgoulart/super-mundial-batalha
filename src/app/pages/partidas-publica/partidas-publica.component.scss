@@ -1,0 +1,566 @@
+
+.partidas-publicas {
+  max-width: 1250px;
+  margin: 0 auto;
+  padding: 45px 25px 70px;
+  color: #fff;
+  box-sizing: border-box;
+}
+
+.cabecalho {
+  margin-bottom: 35px;
+
+  h1 {
+    font-size: 34px;
+    font-weight: 800;
+    margin: 10px 0;
+    color: #fff;
+  }
+
+  p {
+    color: #999;
+    font-size: 14px;
+    margin: 0;
+    line-height: 1.6;
+  }
+}
+
+.subtitulo {
+  color: #c9a227;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 2px;
+}
+
+.resumo {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 15px;
+  margin-bottom: 30px;
+}
+
+.resumo-card {
+  background: #151515;
+  border: 1px solid #292929;
+  border-radius: 10px;
+  padding: 22px;
+
+  span {
+    display: block;
+    font-size: 13px;
+    color: #999;
+    margin-bottom: 10px;
+  }
+
+  strong {
+    font-size: 29px;
+    color: #d4af37;
+  }
+}
+
+.filtros {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 25px;
+  padding: 22px;
+  background: #151515;
+  border: 1px solid #292929;
+  border-radius: 10px;
+  margin-bottom: 40px;
+}
+
+.filtro-grupo,
+.filtro-turno {
+  > span {
+    display: block;
+    color: #999;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+    margin-bottom: 13px;
+  }
+}
+
+.opcoes-grupo,
+.opcoes-turno {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+
+  button {
+    background: #222;
+    border: 1px solid #333;
+    color: #aaa;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: 0.2s;
+
+    &:hover {
+      border-color: #c9a227;
+      color: #fff;
+    }
+
+    &.ativo {
+      background: #c9a227;
+      border-color: #c9a227;
+      color: #111;
+    }
+  }
+}
+
+.opcoes-grupo button {
+  min-width: 42px;
+  height: 38px;
+  font-weight: 700;
+}
+
+.opcoes-turno button {
+  min-width: 105px;
+  padding: 8px 13px;
+  text-align: left;
+
+  span,
+  small {
+    display: block;
+  }
+
+  span {
+    font-size: 12px;
+    font-weight: 800;
+  }
+
+  small {
+    font-size: 10px;
+    margin-top: 3px;
+    opacity: 0.75;
+  }
+}
+
+.titulo-lista {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 15px;
+  margin-bottom: 20px;
+
+  h2 {
+    font-size: 22px;
+    margin: 8px 0 0;
+    font-weight: 800;
+
+    span {
+      color: #c9a227;
+      font-size: 15px;
+      font-weight: 500;
+    }
+  }
+
+  .contador {
+    color: #999;
+    font-size: 12px;
+  }
+}
+
+.lista-partidas {
+  display: grid;
+  gap: 15px;
+}
+
+.partida-card {
+  background: #151515;
+  border: 1px solid #292929;
+  border-radius: 11px;
+  padding: 22px;
+  transition: border-color 0.2s;
+
+  &:hover {
+    border-color: #655321;
+  }
+}
+
+.partida-cabecalho {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 25px;
+
+  .grupo {
+    color: #c9a227;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 1px;
+  }
+
+  .status {
+    color: #d0a84a;
+    background: rgba(201, 162, 39, 0.1);
+    border: 1px solid rgba(201, 162, 39, 0.2);
+    padding: 6px 10px;
+    border-radius: 20px;
+    font-size: 9px;
+    font-weight: 800;
+    letter-spacing: 0.5px;
+
+    &.realizada {
+      color: #69c58d;
+      background: rgba(35, 130, 75, 0.12);
+      border-color: rgba(35, 130, 75, 0.25);
+    }
+  }
+}
+
+.confronto {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 125px minmax(0, 1fr);
+  align-items: center;
+  gap: 20px;
+}
+
+.equipe {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  min-width: 0;
+
+  img,
+  .escudo-vazio {
+    width: 65px;
+    height: 65px;
+    flex-shrink: 0;
+    object-fit: contain;
+    border-radius: 50%;
+    background: #222;
+    padding: 5px;
+    box-sizing: border-box;
+  }
+
+  .escudo-vazio {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #c9a227;
+    font-size: 24px;
+    font-weight: 800;
+  }
+}
+
+.dados-equipe {
+  min-width: 0;
+
+  strong,
+  span {
+    display: block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  strong {
+    color: #fff;
+    font-size: 15px;
+    white-space: nowrap;
+  }
+
+  > span {
+    color: #999;
+    font-size: 12px;
+    margin-top: 5px;
+    white-space: nowrap;
+  }
+
+  a {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    color: #55c982;
+    font-size: 11px;
+    text-decoration: none;
+    margin-top: 10px;
+    font-weight: 700;
+
+    &:hover {
+      color: #8ce5ae;
+      text-decoration: underline;
+    }
+  }
+}
+
+.visitante {
+  justify-content: flex-end;
+  text-align: right;
+}
+
+.placar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  text-align: center;
+
+  strong {
+    color: #d4af37;
+    font-size: 32px;
+    font-weight: 900;
+    min-width: 25px;
+  }
+
+  > span {
+    color: #777;
+    font-weight: 700;
+  }
+
+  .versus {
+    color: #c9a227;
+    font-size: 23px;
+    font-weight: 900;
+  }
+
+  small {
+    display: block;
+    position: absolute;
+    margin-top: 55px;
+    color: #777;
+    font-size: 9px;
+  }
+}
+
+.mensagem-estado {
+  background: #151515;
+  border: 1px solid #292929;
+  border-radius: 10px;
+  padding: 30px;
+  text-align: center;
+  color: #999;
+  font-size: 14px;
+
+  button {
+    display: block;
+    margin: 15px auto 0;
+    padding: 10px 18px;
+    background: #c9a227;
+    color: #111;
+    border: none;
+    border-radius: 6px;
+    font-weight: 700;
+    cursor: pointer;
+  }
+
+  &.erro {
+    color: #e58b8b;
+  }
+}
+
+@media (max-width: 768px) {
+  .partidas-publicas {
+    padding: 30px 14px 50px;
+  }
+
+  .cabecalho {
+    h1 {
+      font-size: 27px;
+    }
+  }
+
+  .resumo {
+    gap: 8px;
+  }
+
+  .resumo-card {
+    padding: 14px 10px;
+
+    span {
+      font-size: 10px;
+    }
+
+    strong {
+      font-size: 23px;
+    }
+  }
+
+  .filtros {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 17px;
+    gap: 22px;
+    margin-bottom: 30px;
+  }
+
+  .opcoes-grupo {
+    gap: 6px;
+
+    button {
+      min-width: 36px;
+    }
+  }
+
+  .titulo-lista {
+    h2 {
+      font-size: 18px;
+    }
+
+    .contador {
+      font-size: 10px;
+      white-space: nowrap;
+    }
+  }
+
+  .partida-card {
+    padding: 17px 11px;
+  }
+
+  .partida-cabecalho {
+    margin-bottom: 20px;
+
+    .status {
+      font-size: 8px;
+    }
+  }
+
+  .confronto {
+    grid-template-columns: minmax(0, 1fr) 78px minmax(0, 1fr);
+    gap: 5px;
+  }
+
+  .equipe {
+    flex-direction: column;
+    gap: 8px;
+    text-align: center;
+
+    img,
+    .escudo-vazio {
+      width: 48px;
+      height: 48px;
+    }
+
+    .dados-equipe {
+      width: 100%;
+
+      strong {
+        font-size: 11px;
+      }
+
+      > span {
+        font-size: 10px;
+      }
+
+      a {
+        font-size: 10px;
+        margin-top: 8px;
+      }
+    }
+  }
+
+  .visitante {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .placar {
+    gap: 6px;
+
+    strong {
+      font-size: 25px;
+    }
+
+    .versus {
+      font-size: 18px;
+    }
+
+    small {
+      font-size: 8px;
+      margin-top: 43px;
+    }
+  }
+}
+
+@media (max-width: 380px) {
+  .resumo-card {
+    padding: 12px 7px;
+
+    strong {
+      font-size: 20px;
+    }
+  }
+
+  .confronto {
+    grid-template-columns: minmax(0, 1fr) 65px minmax(0, 1fr);
+    gap: 3px;
+  }
+
+  .equipe img,
+  .equipe .escudo-vazio {
+    width: 42px;
+    height: 42px;
+  }
+
+  .placar strong {
+    font-size: 22px;
+  }
+}
+
+
+.fases-campeonato {
+  margin-bottom: 25px;
+
+  .titulo-fases {
+    display: block;
+    margin-bottom: 12px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    color: #b99a52;
+  }
+
+  .opcoes-fases {
+    display: flex;
+    gap: 10px;
+    overflow-x: auto;
+    padding-bottom: 8px;
+
+    button {
+      flex: 0 0 auto;
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      padding: 11px 15px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 8px;
+      background: #151515;
+      color: #aaa;
+      font-size: 12px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: 0.2s;
+
+      small {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 21px;
+        height: 21px;
+        padding: 0 5px;
+        border-radius: 20px;
+        background: rgba(255, 255, 255, 0.08);
+        color: #ccc;
+        font-size: 10px;
+      }
+
+      &:hover {
+        border-color: #b99a52;
+        color: #fff;
+      }
+
+      &.ativo {
+        background: #b99a52;
+        border-color: #b99a52;
+        color: #111;
+
+        small {
+          background: rgba(0, 0, 0, 0.15);
+          color: #111;
+        }
+      }
+    }
+  }
+}

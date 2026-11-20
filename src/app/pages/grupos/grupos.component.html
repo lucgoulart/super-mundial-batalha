@@ -1,0 +1,141 @@
+
+<div class="grupos-container">
+
+  <header class="page-header">
+    <div class="header-content">
+      <span class="section-label">FC 26 • SUPER MUNDIAL</span>
+      <h1>FASE DE <span>GRUPOS</span></h1>
+      <p>Acompanhe a classificação e o desempenho dos jogadores.</p>
+    </div>
+
+    <button class="btn-atualizar" (click)="atualizar()" [disabled]="carregando">
+      <span>↻</span>
+      {{ carregando ? 'ATUALIZANDO...' : 'ATUALIZAR' }}
+    </button>
+  </header>
+
+  <div class="legenda">
+    <div class="legenda-item">
+      <span class="legenda-cor classificado"></span>
+      <span>Classificados</span>
+    </div>
+
+    <div class="legenda-item">
+      <span class="legenda-cor playoff"></span>
+      <span>Playoff</span>
+    </div>
+
+    <div class="legenda-item">
+      <span class="legenda-cor eliminado"></span>
+      <span>Eliminados</span>
+    </div>
+  </div>
+
+  <div class="mensagem-carregando" *ngIf="carregando">
+    Carregando grupos...
+  </div>
+
+  <div class="mensagem-erro" *ngIf="erro">
+    {{ erro }}
+  </div>
+
+  <div class="grupos-grid" *ngIf="!carregando && !erro">
+
+    <section class="grupo-card" *ngFor="let grupo of grupos">
+
+      <div class="grupo-header">
+        <div class="grupo-identificacao">
+          <span class="grupo-label">GRUPO</span>
+          <h2>{{ grupo.nome }}</h2>
+        </div>
+
+        <span class="grupo-total">
+          {{ grupo.jogadores.length }} JOGADORES
+        </span>
+      </div>
+
+      <div class="tabela-wrapper">
+        <table>
+          <thead>
+            <tr>
+              <th class="col-pos">#</th>
+              <th class="col-jogador">JOGADOR</th>
+              <th>PTS</th>
+              <th>J</th>
+              <th>V</th>
+              <th>E</th>
+              <th>D</th>
+              <th>SG</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr
+              *ngFor="let jogador of grupo.jogadores"
+              [class.posicao-classificada]="jogador.colocacao <= 2"
+              [class.posicao-playoff]="jogador.colocacao === 3"
+              [class.posicao-eliminada]="jogador.colocacao === 4"
+            >
+              <td class="col-pos">
+                <span class="posicao-numero">
+                  {{ jogador.colocacao }}
+                </span>
+              </td>
+
+              <td class="col-jogador">
+                <div class="jogador-info">
+                 <img
+  *ngIf="jogador.escudoUrl"
+  [src]="jogador.escudoUrl"
+  [alt]="jogador.nome_time"
+  class="escudo-time"
+/>
+
+<div
+  *ngIf="!jogador.escudoUrl"
+  class="escudo-placeholder"
+>
+  {{ jogador.nome_time.charAt(0) }}
+</div>
+
+                  <div class="jogador-nomes">
+                    <strong>{{ jogador.nome }}</strong>
+                    <span>{{ jogador.nome_time }}</span>
+                  </div>
+                </div>
+              </td>
+
+              <td class="pontos">{{ jogador.pontos }}</td>
+              <td>{{ jogador.jogos }}</td>
+              <td>{{ jogador.vitorias }}</td>
+              <td>{{ jogador.empates }}</td>
+              <td>{{ jogador.derrotas }}</td>
+
+              <td
+                class="saldo"
+                [class.saldo-positivo]="jogador.saldoGols > 0"
+                [class.saldo-negativo]="jogador.saldoGols < 0"
+              >
+                {{ jogador.saldoGols > 0 ? '+' : '' }}{{ jogador.saldoGols }}
+              </td>
+            </tr>
+
+            <tr *ngIf="grupo.jogadores.length === 0">
+              <td colspan="8" class="grupo-vazio">
+                Nenhum jogador cadastrado neste grupo.
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <footer class="grupo-footer">
+        <span>GP: GOLS PRÓ</span>
+        <span>SG: SALDO DE GOLS</span>
+      </footer>
+
+    </section>
+
+  </div>
+
+</div>

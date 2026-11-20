@@ -1,0 +1,426 @@
+
+<div class="partidas-container">
+
+  <div class="page-header">
+    <div>
+      <span class="section-label">GERENCIAMENTO</span>
+      <h1>Partidas</h1>
+      <p>Gerencie os confrontos e registre os resultados do campeonato.</p>
+    </div>
+
+    <div class="acoes-header">
+
+      <button
+        *ngIf="faseSelecionada === 'grupos'"
+        class="btn-gerar"
+        type="button"
+        [disabled]="!podeGerarPlayoff1 || gerandoPlayoff1"
+        (click)="gerarPlayoff1()">
+        {{
+          gerandoPlayoff1
+            ? 'Gerando...'
+            : existePlayoff1
+              ? 'Playoff 1 gerado'
+              : 'Gerar Playoff 1'
+        }}
+      </button>
+
+      <button
+  *ngIf="faseSelecionada === 'playoff_1'"
+  class="btn-gerar"
+  type="button"
+  [disabled]="!podeGerarPlayoff2 || gerandoPlayoff2"
+  (click)="gerarPlayoff2()">
+  {{
+    gerandoPlayoff2
+      ? 'Gerando...'
+      : existePlayoff2
+        ? 'Playoff 2 gerado'
+        : 'Gerar Playoff 2'
+  }}
+</button>
+
+<button
+  *ngIf="faseSelecionada === 'playoff_2'"
+  class="btn-gerar"
+  type="button"
+  [disabled]="!podeGerarOitavas || gerandoOitavas"
+  (click)="gerarOitavas()">
+  {{
+    gerandoOitavas
+      ? 'Gerando...'
+      : existeOitavas
+        ? 'Oitavas geradas'
+        : 'Gerar Oitavas'
+  }}
+</button>
+
+<button
+  *ngIf="faseSelecionada === 'oitavas'"
+  class="btn-gerar"
+  type="button"
+  [disabled]="!podeGerarQuartas || gerandoQuartas"
+  (click)="gerarQuartas()">
+  {{
+    gerandoQuartas
+      ? 'Gerando...'
+      : existeQuartas
+        ? 'Quartas geradas'
+        : 'Gerar Quartas de Final'
+  }}
+</button>
+
+<button
+  *ngIf="faseSelecionada === 'quartas'"
+  class="btn-gerar"
+  type="button"
+  [disabled]="!podeGerarSemifinais || gerandoSemifinais"
+  (click)="gerarSemifinais()">
+  {{
+    gerandoSemifinais
+      ? 'Gerando...'
+      : existeSemifinais
+        ? 'Semifinais geradas'
+        : 'Gerar Semifinais'
+  }}
+</button>
+
+<button
+  *ngIf="faseSelecionada === 'semifinais'"
+  class="btn-gerar"
+  type="button"
+  [disabled]="!podeGerarFinal || gerandoFinal"
+  (click)="gerarFinal()">
+  {{
+    gerandoFinal
+      ? 'Gerando...'
+      : existeFinal
+        ? 'Final gerada'
+        : 'Gerar Final'
+  }}
+</button>
+
+      <button
+        class="btn-reset"
+        type="button"
+        (click)="resetarResultados()">
+        Resetar campeonato
+      </button>
+
+    </div>
+  </div>
+
+  <div class="resumo-partidas">
+
+    <div class="resumo-card">
+      <span>Total de partidas</span>
+      <strong>{{ totalPartidas }}</strong>
+    </div>
+
+    <div class="resumo-card">
+      <span>Realizadas</span>
+      <strong>{{ partidasRealizadas }}</strong>
+    </div>
+
+    <div class="resumo-card">
+      <span>Pendentes</span>
+      <strong>{{ partidasPendentes }}</strong>
+    </div>
+
+  </div>
+
+  <!-- SELEÇÃO DE FASE -->
+  <div class="fases-container">
+
+    <button
+      type="button"
+      [class.ativo]="faseSelecionada === 'grupos'"
+      (click)="selecionarFase('grupos')">
+      Fase de grupos
+    </button>
+
+    <button
+      type="button"
+      [class.ativo]="faseSelecionada === 'playoff_1'"
+      (click)="selecionarFase('playoff_1')">
+      Playoff 1
+      <span>{{ totalPartidasPlayoff1 }}/4</span>
+    </button>
+
+    <button
+  type="button"
+  [class.ativo]="faseSelecionada === 'playoff_2'"
+  (click)="selecionarFase('playoff_2')">
+  Playoff 2
+  <span>{{ totalPartidasPlayoff2 }}/4</span>
+</button>
+
+<button
+  type="button"
+  [class.ativo]="faseSelecionada === 'oitavas'"
+  (click)="selecionarFase('oitavas')">
+  Oitavas de Final
+  <span>{{ totalPartidasOitavas }}/8</span>
+</button>
+
+<button
+  type="button"
+  [class.ativo]="faseSelecionada === 'quartas'"
+  (click)="selecionarFase('quartas')">
+  Quartas de Final
+  <span>{{ totalPartidasQuartas }}/4</span>
+</button>
+
+
+<button
+  type="button"
+  [class.ativo]="faseSelecionada === 'semifinais'"
+  (click)="selecionarFase('semifinais')">
+  Semifinais
+  <span>{{ totalPartidasSemifinais }}/2</span>
+</button>
+
+<button
+  type="button"
+  [class.ativo]="faseSelecionada === 'final'"
+  (click)="selecionarFase('final')">
+  Final
+  <span>{{ totalPartidasFinal }}/1</span>
+</button>
+
+  </div>
+
+  <!-- FILTROS DOS GRUPOS -->
+  <div class="filtros-container" *ngIf="faseSelecionada === 'grupos'">
+
+    <div class="filtro-grupos">
+      <span class="filtro-label">GRUPO</span>
+
+      <div class="grupos-lista">
+        <button
+          *ngFor="let grupo of grupos"
+          type="button"
+          [class.ativo]="grupoSelecionado === grupo"
+          (click)="selecionarGrupo(grupo)">
+          {{ grupo }}
+        </button>
+      </div>
+    </div>
+
+    <div class="filtro-turnos">
+      <span class="filtro-label">TURNO</span>
+
+      <div class="turnos-lista">
+        <button
+          type="button"
+          [class.ativo]="turnoSelecionado === 1"
+          (click)="selecionarTurno(1)">
+          Ida
+        </button>
+
+        <button
+          type="button"
+          [class.ativo]="turnoSelecionado === 2"
+          (click)="selecionarTurno(2)">
+          Volta
+        </button>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="partidas-header">
+
+    <h2>
+      <ng-container *ngIf="faseSelecionada === 'grupos'">
+        {{ grupoSelecionado === 'Todos' ? 'Todos os grupos' : 'Grupo ' + grupoSelecionado }}
+        <span>• {{ turnoSelecionado === 1 ? 'Ida' : 'Volta' }}</span>
+      </ng-container>
+
+      <ng-container *ngIf="faseSelecionada === 'playoff_1'">
+        Playoff 1
+      </ng-container>
+
+      <ng-container *ngIf="faseSelecionada === 'playoff_2'">
+  Playoff 2
+</ng-container>
+
+<ng-container *ngIf="faseSelecionada === 'oitavas'">
+  Oitavas de Final
+</ng-container>
+
+<ng-container *ngIf="faseSelecionada === 'quartas'">
+  Quartas de Final
+</ng-container>
+
+<ng-container *ngIf="faseSelecionada === 'semifinais'">
+  Semifinais
+</ng-container>
+
+<ng-container *ngIf="faseSelecionada === 'final'">
+  Final
+</ng-container>
+    </h2>
+
+    <span>{{ partidasFiltradas.length }} partidas</span>
+
+  </div>
+
+  <div *ngIf="carregando" class="estado-vazio">
+    Carregando partidas...
+  </div>
+
+  <div
+    *ngIf="!carregando && partidasFiltradas.length === 0"
+    class="estado-vazio">
+
+    <ng-container *ngIf="faseSelecionada === 'grupos'">
+      Nenhuma partida encontrada.
+    </ng-container>
+
+    <ng-container *ngIf="faseSelecionada === 'playoff_1'">
+      Os confrontos do Playoff 1 ainda não foram gerados.
+    </ng-container>
+
+    <ng-container *ngIf="faseSelecionada === 'playoff_2'">
+  Os confrontos do Playoff 2 ainda não foram gerados.
+</ng-container>
+
+<ng-container *ngIf="faseSelecionada === 'oitavas'">
+  Os confrontos das Oitavas de Final ainda não foram gerados.
+</ng-container>
+
+<ng-container *ngIf="faseSelecionada === 'quartas'">
+  Os confrontos das Quartas de Final ainda não foram gerados.
+</ng-container>
+
+<ng-container *ngIf="faseSelecionada === 'semifinais'">
+  As Semifinais ainda não foram geradas.
+</ng-container>
+
+<ng-container *ngIf="faseSelecionada === 'final'">
+  A Final ainda não foi gerada.
+</ng-container>
+
+  </div>
+
+  <div class="lista-partidas" *ngIf="!carregando">
+
+    <div
+      class="partida-card"
+      *ngFor="let partida of partidasFiltradas; let i = index">
+
+      <div class="partida-info">
+
+<span class="grupo-tag">
+  {{
+    partida.fase === 'grupos'
+      ? 'GRUPO ' + partida.grupo
+      : (
+          partida.fase === 'playoff_1'
+            ? 'PLAYOFF 1'
+            : partida.fase === 'playoff_2'
+              ? 'PLAYOFF 2'
+              : partida.fase === 'oitavas'
+                ? 'OITAVAS DE FINAL'
+                : partida.fase === 'quartas'
+                  ? 'QUARTAS DE FINAL'
+                  : partida.fase === 'semifinais'
+                    ? 'SEMIFINAIS'
+                    : 'FINAL'
+        ) + ' • JOGO ' + (i + 1)
+  }}
+</span>
+        <span
+          class="status-tag"
+          [class.realizada]="partida.status === 'realizada'">
+          {{ partida.status === 'realizada' ? 'Realizada' : 'Pendente' }}
+        </span>
+
+      </div>
+
+      <div class="confronto">
+
+        <div class="jogador">
+
+        <img
+  *ngIf="partida.jogador_casa?.escudoUrl"
+  [src]="partida.jogador_casa?.escudoUrl"
+  [alt]="partida.jogador_casa?.nome_time">
+
+<div
+  class="sem-escudo"
+  *ngIf="!partida.jogador_casa?.escudoUrl">
+  {{ partida.jogador_casa?.nome_time?.charAt(0) || '?' }}
+</div>
+
+          <div class="jogador-dados">
+            <strong>
+              {{ partida.jogador_casa?.nome || 'Jogador não encontrado' }}
+            </strong>
+            <span>{{ partida.jogador_casa?.nome_time }}</span>
+          </div>
+
+        </div>
+
+        <div class="placar">
+
+          <input
+            type="number"
+            min="0"
+            step="1"
+            [(ngModel)]="partida.gols_casa"
+            aria-label="Gols do jogador da casa">
+
+          <span>x</span>
+
+          <input
+            type="number"
+            min="0"
+            step="1"
+            [(ngModel)]="partida.gols_visitante"
+            aria-label="Gols do jogador visitante">
+
+        </div>
+
+        <div class="jogador visitante">
+
+          <div class="jogador-dados">
+            <strong>
+              {{ partida.jogador_visitante?.nome || 'Jogador não encontrado' }}
+            </strong>
+            <span>{{ partida.jogador_visitante?.nome_time }}</span>
+          </div>
+
+          <img
+  *ngIf="partida.jogador_visitante?.escudoUrl"
+  [src]="partida.jogador_visitante?.escudoUrl"
+  [alt]="partida.jogador_visitante?.nome_time">
+
+<div
+  class="sem-escudo"
+  *ngIf="!partida.jogador_visitante?.escudoUrl">
+  {{ partida.jogador_visitante?.nome_time?.charAt(0) || '?' }}
+</div>
+
+        </div>
+
+      </div>
+
+      <div class="partida-acoes">
+
+        <button
+          type="button"
+          class="btn-salvar"
+          [disabled]="salvandoId === partida.id"
+          (click)="salvarResultado(partida)">
+          {{ salvandoId === partida.id ? 'Salvando...' : 'Salvar resultado' }}
+        </button>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>

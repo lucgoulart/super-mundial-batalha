@@ -1,0 +1,129 @@
+<div class="players-page">
+
+  <!-- CABEÇALHO -->
+  <header class="page-header">
+    <span class="section-label">BATALHA DOS 12 / FC 26</span>
+
+    <h1>Jogadores</h1>
+
+    <p>
+      Encontre seus adversários e entre em contato para marcar sua partida.
+    </p>
+
+    <div class="players-total">
+      <span class="material-icons">groups</span>
+      {{ jogadores.length }} jogadores inscritos
+    </div>
+  </header>
+
+  <!-- PESQUISA -->
+  <section class="players-toolbar">
+
+    <div class="search-box">
+      <span class="material-icons">search</span>
+
+      <input
+        type="text"
+        [(ngModel)]="termoPesquisa"
+        placeholder="Pesquisar jogador, time ou ID FIFA..."
+      />
+    </div>
+
+    <div class="group-filters">
+      <button
+        type="button"
+        *ngFor="let grupo of grupos"
+        [class.active]="grupoSelecionado === grupo"
+        (click)="selecionarGrupo(grupo)">
+        {{ grupo === 'todos' ? 'Todos' : 'Grupo ' + grupo }}
+      </button>
+    </div>
+
+  </section>
+
+  <!-- CARREGAMENTO -->
+  <div class="loading-state" *ngIf="carregando">
+    <span class="material-icons">hourglass_empty</span>
+    <p>Carregando jogadores...</p>
+  </div>
+
+  <!-- ERRO -->
+  <div class="error-state" *ngIf="mensagemErro">
+    <span class="material-icons">error_outline</span>
+    <p>{{ mensagemErro }}</p>
+
+    <button type="button" (click)="carregarJogadores()">
+      Tentar novamente
+    </button>
+  </div>
+
+  <!-- LISTAGEM -->
+  <section
+    class="players-grid"
+    *ngIf="!carregando && !mensagemErro">
+
+    <article
+      class="player-card"
+      *ngFor="let jogador of jogadoresFiltrados">
+
+      <div class="card-top">
+
+        <div class="team-shield">
+          <img
+            *ngIf="jogador.escudoUrl"
+            [src]="jogador.escudoUrl"
+            [alt]="'Escudo ' + jogador.nome_time"
+          />
+
+          <span
+            *ngIf="!jogador.escudoUrl"
+            class="material-icons">
+            shield
+          </span>
+        </div>
+
+        <span class="group-badge">
+          {{ jogador.grupo ? 'GRUPO ' + jogador.grupo : 'SEM GRUPO' }}
+        </span>
+
+      </div>
+
+      <div class="player-info">
+        <h2>{{ jogador.nome }}</h2>
+        <p>{{ jogador.nome_time }}</p>
+      </div>
+
+      <div class="player-id">
+        <span>ID FIFA</span>
+        <strong>{{ jogador.id_fifa }}</strong>
+      </div>
+
+      <a
+        class="whatsapp-button"
+        [href]="gerarLinkWhatsApp(jogador.whatsapp)"
+        target="_blank"
+        rel="noopener noreferrer">
+
+        <span class="material-icons">chat</span>
+        CHAMAR NO WHATSAPP
+
+      </a>
+
+    </article>
+
+    <!-- NENHUM RESULTADO -->
+    <div
+      class="empty-state"
+      *ngIf="jogadoresFiltrados.length === 0">
+
+      <span class="material-icons">search_off</span>
+
+      <h3>Nenhum jogador encontrado</h3>
+
+      <p>Tente pesquisar por outro nome, time ou grupo.</p>
+
+    </div>
+
+  </section>
+
+</div>

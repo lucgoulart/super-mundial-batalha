@@ -1,0 +1,431 @@
+
+<div class="formato-page">
+
+  <!-- CABEÇALHO DA PÁGINA -->
+  <section class="formato-hero">
+
+    <span class="eyebrow">SUPER MUNDIAL • BATALHA DOS 12</span>
+
+    <h1>
+      ENTENDA O
+      <strong>FORMATO DO CAMPEONATO</strong>
+    </h1>
+
+    <p>
+      32 jogadores, 8 grupos e um único objetivo:
+      conquistar a taça.
+    </p>
+
+    <div class="format-badges">
+      <span>32 JOGADORES</span>
+      <span>8 GRUPOS</span>
+      <span>R$ 35,00 INSCRIÇÃO</span>
+      <span>R$ 560,00 PARA O CAMPEÃO</span>
+    </div>
+
+  </section>
+
+  <!-- RESUMO DO CAMINHO -->
+  <section class="overview-section">
+
+    <div class="section-heading">
+      <span class="section-number">01</span>
+      <div>
+        <h2>O CAMINHO ATÉ A TAÇA</h2>
+        <p>Veja como funciona cada etapa da competição.</p>
+      </div>
+    </div>
+
+    <div class="timeline">
+
+      <div class="timeline-item">
+        <span class="timeline-icon">♟</span>
+        <strong>GRUPOS</strong>
+        <small>32 jogadores</small>
+      </div>
+
+      <span class="timeline-arrow">›</span>
+
+      <div class="timeline-item">
+        <span class="timeline-icon">⚔</span>
+        <strong>PLAYOFF DOS 3º</strong>
+        <small>8 jogadores</small>
+      </div>
+
+      <span class="timeline-arrow">›</span>
+
+      <div class="timeline-item">
+        <span class="timeline-icon">📊</span>
+        <strong>RANKING DE ACESSO</strong>
+        <small>20 jogadores</small>
+      </div>
+
+      <span class="timeline-arrow">›</span>
+
+      <div class="timeline-item">
+        <span class="timeline-icon">🏆</span>
+        <strong>OITAVAS</strong>
+        <small>16 jogadores</small>
+      </div>
+
+      <span class="timeline-arrow">›</span>
+
+      <div class="timeline-item">
+        <span class="timeline-icon">👑</span>
+        <strong>CAMPEÃO</strong>
+        <small>Um vencedor</small>
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- ETAPA 1 -->
+  <section class="format-section">
+
+    <div class="section-heading">
+      <span class="section-number">02</span>
+      <div>
+        <h2>FASE DE GRUPOS</h2>
+        <p>32 jogadores divididos em 8 grupos de 4.</p>
+      </div>
+      <span class="stage-tag tag-blue">PRIMEIRA FASE</span>
+    </div>
+
+    <div class="groups-grid">
+
+      <div class="group-card" *ngFor="let grupo of grupos">
+        <h3>{{ grupo }}</h3>
+
+        <div class="group-position direct">
+          <span>1º colocado</span>
+          <strong>CLASSIFICADO</strong>
+        </div>
+
+        <div class="group-position direct">
+          <span>2º colocado</span>
+          <strong>CLASSIFICADO</strong>
+        </div>
+
+        <div class="group-position playoff">
+          <span>3º colocado</span>
+          <strong>PLAYOFF</strong>
+        </div>
+
+        <div class="group-position eliminated">
+          <span>4º colocado</span>
+          <strong>ELIMINADO</strong>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="info-card">
+
+      <span class="info-icon">ℹ</span>
+
+      <div>
+        <strong>Como funciona?</strong>
+        <p>
+          Todos jogam contra todos dentro do próprio grupo em jogos de IDA e VOLTA.
+          Cada jogador realiza <b>6 partidas</b>.
+        </p>
+      </div>
+
+    </div>
+
+    <div class="classification-summary">
+
+      <div class="summary-item direct-summary">
+        <strong>16</strong>
+        <span>CLASSIFICADOS DIRETAMENTE</span>
+        <small>1º e 2º de cada grupo</small>
+      </div>
+
+      <div class="summary-item playoff-summary">
+        <strong>8</strong>
+        <span>VÃO PARA O PLAYOFF</span>
+        <small>3º de cada grupo</small>
+      </div>
+
+      <div class="summary-item eliminated-summary">
+        <strong>8</strong>
+        <span>ELIMINADOS</span>
+        <small>4º de cada grupo</small>
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- ETAPA 2 -->
+  <section class="format-section">
+
+    <div class="section-heading">
+      <span class="section-number">03</span>
+      <div>
+        <h2>PLAYOFF DOS TERCEIROS COLOCADOS</h2>
+        <p>Uma segunda chance para continuar na competição.</p>
+      </div>
+      <span class="stage-tag tag-orange">ELIMINATÓRIO</span>
+    </div>
+
+    <div class="playoff-explanation">
+
+      <div class="playoff-intro">
+        <div class="playoff-number">08</div>
+        <div>
+          <strong>JOGADORES</strong>
+          <span>Os terceiros colocados dos 8 grupos.</span>
+        </div>
+      </div>
+
+      <div class="playoff-match-grid">
+
+        <div class="match-card" *ngFor="let confronto of confrontosTerceiros; let i = index">
+          <span class="match-label">CONFRONTO {{ i + 1 }}</span>
+
+          <div class="match-versus">
+            <span>{{ confronto[0] }}</span>
+            <b>VS</b>
+            <span>{{ confronto[1] }}</span>
+          </div>
+
+          <div class="match-result">
+            <span>VENCEDOR AVANÇA</span>
+            <span>PERDEDOR ELIMINADO</span>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="playoff-result">
+        <div>
+          <strong>4 VENCEDORES</strong>
+          <span>Garantem vaga na próxima fase.</span>
+        </div>
+        <div class="result-arrow">→</div>
+        <div class="result-total">
+          <strong>20</strong>
+          <span>JOGADORES NO TOTAL</span>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="info-card orange-info">
+      <span class="info-icon">!</span>
+      <div>
+        <strong>Atenção!</strong>
+        <p>
+          Apenas os vencedores dos 4 confrontos continuam.
+          Os outros 4 jogadores são eliminados.
+        </p>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- ETAPA 3 -->
+  <section class="format-section">
+
+    <div class="section-heading">
+      <span class="section-number">04</span>
+      <div>
+        <h2>RANKING GERAL E ACESSO ÀS OITAVAS</h2>
+        <p>Aqui, cada ponto conquistado pode fazer diferença.</p>
+      </div>
+      <span class="stage-tag tag-purple">DECISIVO</span>
+    </div>
+
+    <div class="ranking-explanation">
+
+      <div class="ranking-intro">
+        <div class="ranking-icon">📊</div>
+        <div>
+          <strong>OS 20 SOBREVIVENTES ENTRAM NO RANKING GERAL</strong>
+          <p>
+            A classificação considera a campanha de cada jogador,
+            incluindo os resultados da fase de grupos.
+          </p>
+        </div>
+      </div>
+
+      <div class="criteria-list">
+        <span>PONTOS</span>
+        <span>SALDO DE GOLS</span>
+        <span>GOLS MARCADOS</span>
+        <span>VITÓRIAS</span>
+        <span>OUTROS DESEMPATES</span>
+      </div>
+
+      <div class="ranking-separation">
+
+        <div class="ranking-direct">
+
+          <div class="ranking-header">
+            <span>TOP 12 DO RANKING</span>
+            <strong>CLASSIFICADOS DIRETAMENTE</strong>
+          </div>
+
+          <div class="ranking-players">
+            <div *ngFor="let posicao of posicoesDiretas">
+              {{ posicao }}º
+            </div>
+          </div>
+
+          <p>Esses 12 jogadores já estão nas oitavas de final!</p>
+
+        </div>
+
+        <div class="ranking-playoff">
+
+          <div class="ranking-header">
+            <span>DO 13º AO 20º</span>
+            <strong>DISPUTAM O PLAYOFF DE ACESSO</strong>
+          </div>
+
+          <div class="access-matches">
+
+            <div class="access-match" *ngFor="let confronto of confrontosAcesso">
+              <strong>{{ confronto[0] }}º</strong>
+              <span>VS</span>
+              <strong>{{ confronto[1] }}º</strong>
+              <span class="access-arrow">→</span>
+            </div>
+
+          </div>
+
+          <p>4 confrontos. 4 vencedores. 4 vagas nas oitavas.</p>
+
+        </div>
+
+      </div>
+
+      <div class="access-result">
+        <div>
+          <strong>12</strong>
+          <span>CLASSIFICADOS DIRETAMENTE</span>
+        </div>
+
+        <span class="plus">+</span>
+
+        <div>
+          <strong>4</strong>
+          <span>VENCEDORES DO PLAYOFF</span>
+        </div>
+
+        <span class="equals">=</span>
+
+        <div class="total-round">
+          <strong>16</strong>
+          <span>NAS OITAVAS DE FINAL</span>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="info-card purple-info">
+      <span class="info-icon">★</span>
+      <div>
+        <strong>A campanha importa!</strong>
+        <p>
+          Os 12 melhores do ranking pulam o playoff de acesso
+          e garantem vaga direta nas oitavas.
+        </p>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- ETAPA 4 -->
+  <section class="format-section">
+
+    <div class="section-heading">
+      <span class="section-number">05</span>
+      <div>
+        <h2>MATA-MATA FINAL</h2>
+        <p>Chegou a hora de decidir quem será o campeão.</p>
+      </div>
+      <span class="stage-tag tag-gold">FASE FINAL</span>
+    </div>
+
+    <div class="knockout-grid">
+
+      <div class="knockout-card">
+        <span class="knockout-icon">⚔</span>
+        <strong>OITAVAS</strong>
+        <span>16 → 8</span>
+      </div>
+
+      <div class="knockout-arrow">›</div>
+
+      <div class="knockout-card">
+        <span class="knockout-icon">⚔</span>
+        <strong>QUARTAS</strong>
+        <span>8 → 4</span>
+      </div>
+
+      <div class="knockout-arrow">›</div>
+
+      <div class="knockout-card">
+        <span class="knockout-icon">⚔</span>
+        <strong>SEMIFINAL</strong>
+        <span>4 → 2</span>
+      </div>
+
+      <div class="knockout-arrow">›</div>
+
+      <div class="knockout-card champion-card">
+        <span class="knockout-icon">🏆</span>
+        <strong>FINAL</strong>
+        <span>2 → 1 CAMPEÃO</span>
+      </div>
+
+    </div>
+
+    <div class="champion-banner">
+      <span>👑</span>
+      <div>
+        <strong>APENAS UM CHEGARÁ AO TOPO</strong>
+        <p>O grande campeão do Super Mundial Batalha dos 12!</p>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- RESUMO VISUAL OFICIAL -->
+  <section class="visual-summary">
+
+    <div class="section-heading">
+      <span class="section-number">06</span>
+      <div>
+        <h2>RESUMO VISUAL DO FORMATO</h2>
+        <p>Todo o caminho do campeonato em uma única imagem.</p>
+      </div>
+    </div>
+
+    <img
+      src="assets/images/formato-super-mundial.jpeg"
+      alt="Infográfico oficial do formato do Super Mundial Batalha dos 12"
+      class="format-infographic"
+      loading="lazy"
+    />
+
+  </section>
+
+  <!-- ENCERRAMENTO -->
+  <section class="format-footer">
+
+    <span>SUPER MUNDIAL • BATALHA DOS 12</span>
+
+    <h2>
+      CADA PONTO CONTA.
+      <strong>CADA GOL FAZ A DIFERENÇA.</strong>
+    </h2>
+
+    <p>O caminho até a glória começa na fase de grupos.</p>
+
+  </section>
+
+</div>

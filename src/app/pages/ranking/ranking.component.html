@@ -1,0 +1,161 @@
+
+<div class="ranking-container">
+
+  <header class="ranking-header">
+    <span class="subtitulo">SUPERMUNDIAL • BATALHA DOS 12</span>
+    <h1>RANKING GERAL</h1>
+    <p>Acompanhe a classificação dos 32 participantes rumo ao título.</p>
+  </header>
+
+  <section class="resumo-ranking">
+
+    <div class="resumo-card">
+      <span>CLASSIFICADOS DIRETOS</span>
+      <strong>{{ rankingGeral.slice(0, 12).length }}/12</strong>
+    </div>
+
+    <div class="resumo-card">
+      <span>SEGUNDO PLAYOFF</span>
+      <strong>{{ rankingGeral.slice(12, 16).length }}/4</strong>
+    </div>
+
+    <div class="resumo-card">
+      <span>PRIMEIRO PLAYOFF</span>
+      <strong>{{ playoffTerceiros.length }}/8</strong>
+    </div>
+
+    <div class="resumo-card">
+      <span>ELIMINADOS</span>
+      <strong>{{ eliminados.length }}/8</strong>
+    </div>
+
+  </section>
+
+  <section class="legenda">
+    <div><span class="cor-legenda direto"></span> Classificado direto para as oitavas</div>
+    <div><span class="cor-legenda segundo-playoff"></span> Segundo playoff</div>
+    <div><span class="cor-legenda primeiro-playoff"></span> Primeiro playoff</div>
+    <div><span class="cor-legenda eliminado"></span> Eliminado</div>
+  </section>
+
+  <div class="estado-ranking" *ngIf="carregando">
+    Carregando classificação...
+  </div>
+
+  <div class="estado-ranking erro" *ngIf="!carregando && erro">
+    {{ erro }}
+    <button type="button" (click)="carregarRanking()">Tentar novamente</button>
+  </div>
+
+  <ng-container *ngIf="!carregando && !erro">
+
+    <section class="secao-ranking">
+
+      <div class="titulo-secao">
+        <div>
+          <span class="subtitulo">32 PARTICIPANTES</span>
+          <h2>Classificação geral</h2>
+        </div>
+
+        <span class="contador">{{ totalJogadores }} jogadores</span>
+      </div>
+
+      <div class="tabela-wrapper">
+
+        <table>
+          <thead>
+            <tr>
+              <th>POS.</th>
+              <th>JOGADOR / TIME</th>
+              <th>GRUPO</th>
+              <th>PTS</th>
+              <th>J</th>
+              <th>V</th>
+              <th>E</th>
+              <th>D</th>
+              <th>GP</th>
+              <th>GC</th>
+              <th>SG</th>
+              <th>SITUAÇÃO</th>
+            </tr>
+          </thead>
+
+          <tbody>
+
+            <tr
+              *ngFor="let jogador of rankingGeral; let i = index"
+              [class.classificado-direto]="i < 12"
+              [class.segundo-playoff]="i >= 12 && i < 16"
+              [class.primeiro-playoff]="i >= 16 && i < 24"
+              [class.eliminado]="i >= 24"
+            >
+
+              <td class="posicao">{{ i + 1 }}º</td>
+
+              <td class="jogador-coluna">
+
+            <img
+  *ngIf="jogador.escudoUrl"
+  [src]="jogador.escudoUrl"
+  [alt]="jogador.nome_time"
+>
+
+<div class="escudo-vazio" *ngIf="!jogador.escudoUrl">
+  {{ jogador.nome_time.charAt(0) }}
+</div>
+
+                <div class="dados-jogador">
+                  <strong>{{ jogador.nome }}</strong>
+                  <span>{{ jogador.nome_time }}</span>
+                </div>
+
+              </td>
+
+              <td>{{ jogador.grupo }}</td>
+              <td class="pontos">{{ jogador.pontos }}</td>
+              <td>{{ jogador.jogos }}</td>
+              <td>{{ jogador.vitorias }}</td>
+              <td>{{ jogador.empates }}</td>
+              <td>{{ jogador.derrotas }}</td>
+              <td>{{ jogador.golsPro }}</td>
+              <td>{{ jogador.golsContra }}</td>
+              <td>{{ jogador.saldoGols > 0 ? '+' : '' }}{{ jogador.saldoGols }}</td>
+
+              <td>
+
+                <span class="status status-direto" *ngIf="i < 12">
+                  OITAVAS
+                </span>
+
+                <span class="status status-playoff" *ngIf="i >= 12 && i < 16">
+                  PLAYOFF 2
+                </span>
+
+                <span class="status status-terceiro" *ngIf="i >= 16 && i < 24">
+                  PLAYOFF 1
+                </span>
+
+                <span class="status status-eliminado" *ngIf="i >= 24">
+                  ELIMINADO
+                </span>
+
+              </td>
+
+            </tr>
+
+            <tr *ngIf="rankingGeral.length === 0">
+              <td colspan="12" class="sem-jogadores">
+                A classificação será exibida após os primeiros resultados.
+              </td>
+            </tr>
+
+          </tbody>
+        </table>
+
+      </div>
+
+    </section>
+
+  </ng-container>
+
+</div>

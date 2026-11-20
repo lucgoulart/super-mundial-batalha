@@ -1,0 +1,742 @@
+.mata-mata-container {
+  min-height: 100vh;
+  padding: 45px 4%;
+  background:
+    radial-gradient(circle at top center, rgba(177, 139, 61, 0.08), transparent 35%),
+    #080808;
+  color: #fff;
+}
+
+
+/* =========================================
+   CABEÇALHO
+========================================= */
+
+.cabecalho-mata-mata {
+  margin-bottom: 30px;
+
+  .subtitulo {
+    color: #c7a45b;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 2px;
+  }
+
+  h1 {
+    margin: 10px 0 8px;
+    font-size: clamp(36px, 5vw, 58px);
+    font-weight: 900;
+    letter-spacing: -1px;
+  }
+
+  p {
+    margin: 0;
+    color: #8d8d8d;
+    font-size: 14px;
+  }
+}
+
+
+/* =========================================
+   RESUMO
+========================================= */
+
+.resumo-mata-mata {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 15px;
+  margin-bottom: 45px;
+}
+
+.resumo-card {
+  padding: 18px 20px;
+  border: 1px solid #242424;
+  border-radius: 10px;
+  background: #111;
+
+  span {
+    display: block;
+    margin-bottom: 7px;
+    color: #777;
+    font-size: 11px;
+  }
+
+  strong {
+    color: #d0ad60;
+    font-size: 26px;
+  }
+}
+
+
+/* =========================================
+   TÍTULOS DE FASE
+========================================= */
+
+.titulo-fase {
+  margin-bottom: 22px;
+
+  > span {
+    color: #c6a45d;
+    font-size: 10px;
+    font-weight: 900;
+    letter-spacing: 2px;
+  }
+
+  h2 {
+    margin: 7px 0 5px;
+    font-size: 25px;
+    font-weight: 900;
+  }
+
+  p {
+    margin: 0;
+    color: #777;
+    font-size: 12px;
+  }
+
+  &.principal {
+    margin-top: 55px;
+  }
+}
+
+
+/* =========================================
+   PLAYOFFS
+========================================= */
+
+.playoffs {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+.playoff-bloco {
+  padding: 18px;
+  border: 1px solid #272727;
+  border-radius: 12px;
+  background: #101010;
+}
+
+.playoff-titulo {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 15px;
+
+  span {
+    color: #d0ad60;
+    font-size: 12px;
+    font-weight: 900;
+    letter-spacing: 1px;
+  }
+
+  small {
+    color: #666;
+    font-size: 10px;
+  }
+}
+
+.playoff-jogos {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+}
+
+.mini-partida {
+  padding: 8px;
+  border: 1px solid #242424;
+  border-radius: 7px;
+  background: #151515;
+}
+
+.mini-equipe {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 35px;
+  padding: 4px;
+  border-radius: 5px;
+
+  &.vencedor {
+    background: rgba(197, 159, 80, 0.12);
+
+    strong,
+    b {
+      color: #dfc174;
+    }
+  }
+
+  b {
+    color: #ddd;
+    font-size: 15px;
+  }
+}
+
+.mini-time {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  min-width: 0;
+
+  img,
+  .mini-escudo {
+    width: 25px;
+    height: 25px;
+    flex-shrink: 0;
+    object-fit: contain;
+  }
+
+  .mini-escudo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: #292929;
+    color: #c5a25d;
+    font-size: 9px;
+    font-weight: 800;
+  }
+
+  div:last-child {
+    min-width: 0;
+  }
+
+  strong,
+  small {
+    display: block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  strong {
+    color: #ddd;
+    font-size: 9px;
+  }
+
+  small {
+    margin-top: 2px;
+    color: #666;
+    font-size: 7px;
+  }
+}
+
+.mini-linha {
+  height: 1px;
+  margin: 2px 0;
+  background: #292929;
+}
+
+
+/* =========================================
+   BRACKET
+========================================= */
+
+.bracket-wrapper {
+  width: 100%;
+  overflow-x: auto;
+  padding: 20px 0 35px;
+  scrollbar-color: #98783d #151515;
+  scrollbar-width: thin;
+}
+
+.bracket {
+  position: relative;
+  display: grid;
+  grid-template-columns: 270px 270px 270px 270px 180px;
+  gap: 55px;
+  min-width: 1290px;
+  min-height: 720px;
+}
+
+
+/* =========================================
+   RODADAS
+========================================= */
+
+.round {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.round-header {
+  height: 48px;
+  margin-bottom: 15px;
+  text-align: center;
+
+  span {
+    display: block;
+    color: #d2af60;
+    font-size: 11px;
+    font-weight: 900;
+    letter-spacing: 1.5px;
+  }
+
+  small {
+    display: block;
+    margin-top: 5px;
+    color: #666;
+    font-size: 9px;
+  }
+}
+
+.round-body {
+  position: relative;
+  flex: 1;
+}
+
+
+/* =========================================
+   POSICIONAMENTO DAS PARTIDAS
+========================================= */
+
+.oitavas .bracket-partida {
+  position: absolute;
+  left: 0;
+  width: 100%;
+}
+
+.oitavas .bracket-partida:nth-child(1) {
+  top: 0;
+}
+
+.oitavas .bracket-partida:nth-child(2) {
+  top: 85px;
+}
+
+.oitavas .bracket-partida:nth-child(3) {
+  top: 170px;
+}
+
+.oitavas .bracket-partida:nth-child(4) {
+  top: 255px;
+}
+
+.oitavas .bracket-partida:nth-child(5) {
+  top: 340px;
+}
+
+.oitavas .bracket-partida:nth-child(6) {
+  top: 425px;
+}
+
+.oitavas .bracket-partida:nth-child(7) {
+  top: 510px;
+}
+
+.oitavas .bracket-partida:nth-child(8) {
+  top: 595px;
+}
+
+
+/* QUARTAS */
+
+.quartas .bracket-partida {
+  position: absolute;
+  left: 0;
+  width: 100%;
+}
+
+.quartas .bracket-partida:nth-child(1) {
+  top: 42px;
+}
+
+.quartas .bracket-partida:nth-child(2) {
+  top: 212px;
+}
+
+.quartas .bracket-partida:nth-child(3) {
+  top: 382px;
+}
+
+.quartas .bracket-partida:nth-child(4) {
+  top: 552px;
+}
+
+
+/* SEMIFINAIS */
+
+.semifinais .bracket-partida {
+  position: absolute;
+  left: 0;
+  width: 100%;
+}
+
+.semifinais .bracket-partida:nth-child(1) {
+  top: 127px;
+}
+
+.semifinais .bracket-partida:nth-child(2) {
+  top: 467px;
+}
+
+
+/* FINAL */
+
+.final .bracket-partida {
+  position: absolute;
+  top: 297px;
+  left: 0;
+  width: 100%;
+}
+
+
+/* =========================================
+   CARD DE CONFRONTO
+========================================= */
+
+.bracket-partida {
+  position: relative;
+  border: 1px solid #2b2b2b;
+  border-radius: 9px;
+  background: #141414;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+  overflow: visible;
+  z-index: 2;
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    right: -56px;
+    width: 55px;
+    height: 1px;
+    background: #66532e;
+  }
+}
+
+.bracket-equipe {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 43px;
+  padding: 6px 9px;
+
+  &:first-child {
+    border-bottom: 1px solid #292929;
+  }
+
+  &.vencedor {
+    background: rgba(190, 151, 72, 0.13);
+
+    .bracket-nomes strong,
+    > b {
+      color: #dfc274;
+    }
+  }
+
+  > b {
+    min-width: 20px;
+    color: #ccc;
+    font-size: 16px;
+    text-align: center;
+  }
+}
+
+.bracket-time {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+
+  img,
+  .bracket-escudo {
+    width: 30px;
+    height: 30px;
+    flex-shrink: 0;
+    object-fit: contain;
+  }
+
+  .bracket-escudo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: #292929;
+    color: #c5a25d;
+    font-size: 11px;
+    font-weight: 900;
+  }
+}
+
+.bracket-nomes {
+  min-width: 0;
+
+  strong,
+  small {
+    display: block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  strong {
+    max-width: 160px;
+    color: #ddd;
+    font-size: 10px;
+    font-weight: 800;
+  }
+
+  small {
+    max-width: 160px;
+    margin-top: 3px;
+    color: #666;
+    font-size: 8px;
+  }
+}
+
+
+/* =========================================
+   CONEXÕES DO BRACKET
+========================================= */
+
+/* Oitavas → Quartas */
+
+.oitavas .bracket-partida:nth-child(odd)::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  right: -28px;
+  width: 1px;
+  height: 43px;
+  background: #66532e;
+}
+
+.oitavas .bracket-partida:nth-child(even)::before {
+  content: '';
+  position: absolute;
+  top: -43px;
+  right: -28px;
+  width: 1px;
+  height: 43px;
+  background: #66532e;
+}
+
+
+/* Quartas → Semis */
+
+.quartas .bracket-partida::before {
+  content: '';
+  position: absolute;
+  right: -28px;
+  width: 1px;
+  height: 85px;
+  background: #66532e;
+}
+
+.quartas .bracket-partida:nth-child(1)::before {
+  top: 50%;
+}
+
+.quartas .bracket-partida:nth-child(2)::before {
+  top: -43px;
+}
+
+.quartas .bracket-partida:nth-child(3)::before {
+  top: 50%;
+}
+
+.quartas .bracket-partida:nth-child(4)::before {
+  top: -43px;
+}
+
+
+/* Semis → Final */
+
+.semifinais .bracket-partida::before {
+  content: '';
+  position: absolute;
+  right: -28px;
+  width: 1px;
+  height: 170px;
+  background: #66532e;
+}
+
+.semifinais .bracket-partida:nth-child(1)::before {
+  top: 50%;
+}
+
+.semifinais .bracket-partida:nth-child(2)::before {
+  top: -85px;
+}
+
+
+/* =========================================
+   FINAL
+========================================= */
+
+.final-partida {
+  border-color: rgba(202, 164, 88, 0.45);
+  box-shadow:
+    0 0 30px rgba(202, 164, 88, 0.08),
+    0 8px 20px rgba(0, 0, 0, 0.3);
+
+  &::after {
+    right: -56px;
+    background: #b8944f;
+  }
+}
+
+.final-status {
+  padding: 7px;
+  border-top: 1px solid #292929;
+  color: #8d7040;
+  font-size: 8px;
+  font-weight: 800;
+  letter-spacing: 1px;
+  text-align: center;
+
+  .finalizada {
+    color: #6ec88b;
+  }
+}
+
+
+/* =========================================
+   CAMPEÃO
+========================================= */
+
+.campeao-bracket {
+  position: relative;
+  align-self: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 200px;
+  margin-top: 245px;
+  padding: 18px 10px;
+  border: 1px solid rgba(202, 164, 88, 0.35);
+  border-radius: 12px;
+  background:
+    radial-gradient(circle, rgba(196, 157, 73, 0.14), transparent 70%),
+    #111;
+  text-align: center;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: -56px;
+    width: 55px;
+    height: 1px;
+    background: #b8944f;
+  }
+
+  .trofeu {
+    font-size: 34px;
+    filter: grayscale(1);
+    opacity: 0.35;
+
+    &.ativo {
+      filter: none;
+      opacity: 1;
+    }
+  }
+
+  > span {
+    margin-top: 5px;
+    color: #c8a45c;
+    font-size: 9px;
+    font-weight: 900;
+    letter-spacing: 2px;
+  }
+
+  img,
+  .campeao-escudo-vazio {
+    width: 50px;
+    height: 50px;
+    margin-top: 12px;
+    object-fit: contain;
+  }
+
+  .campeao-escudo-vazio {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: #252525;
+    color: #b18d4a;
+    font-size: 20px;
+    font-weight: 900;
+  }
+
+  strong {
+    margin-top: 8px;
+    color: #eee;
+    font-size: 11px;
+  }
+
+  small {
+    margin-top: 4px;
+    color: #777;
+    font-size: 8px;
+  }
+
+  .campeao-aguardando {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 50px;
+    margin-top: 12px;
+    border: 1px dashed #444;
+    border-radius: 50%;
+    color: #777;
+    font-size: 22px;
+  }
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 768px) {
+
+  .mata-mata-container {
+    padding: 30px 15px;
+  }
+
+  .resumo-mata-mata {
+    gap: 8px;
+  }
+
+  .resumo-card {
+    padding: 14px 10px;
+
+    span {
+      font-size: 9px;
+    }
+
+    strong {
+      font-size: 21px;
+    }
+  }
+
+  .playoffs {
+    grid-template-columns: 1fr;
+  }
+
+  .playoff-jogos {
+    grid-template-columns: 1fr;
+  }
+
+  .bracket-wrapper {
+    margin-right: -15px;
+    padding-right: 15px;
+  }
+
+  .bracket {
+    min-width: 1290px;
+  }
+
+  .titulo-fase.principal {
+    margin-top: 40px;
+  }
+
+  .aviso-mobile {
+    display: block;
+  }
+}

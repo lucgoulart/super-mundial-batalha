@@ -1,0 +1,504 @@
+
+.ranking-container {
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 40px 24px 70px;
+  color: #f5f5f5;
+}
+
+.ranking-header {
+  margin-bottom: 30px;
+
+  .subtitulo {
+    color: #d5ad55;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 2px;
+  }
+
+  h1 {
+    margin: 10px 0;
+    font-size: clamp(28px, 5vw, 42px);
+    font-weight: 900;
+    letter-spacing: 1px;
+  }
+
+  p {
+    color: #a6a6a6;
+    font-size: 14px;
+    line-height: 1.6;
+  }
+}
+
+.resumo-ranking {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 15px;
+  margin-bottom: 25px;
+}
+
+.resumo-card {
+  padding: 20px;
+  background: #151515;
+  border: 1px solid #292929;
+  border-radius: 10px;
+
+  span {
+    display: block;
+    color: #a6a6a6;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 1px;
+  }
+
+  strong {
+    display: block;
+    margin-top: 10px;
+    color: #d5ad55;
+    font-size: 30px;
+    font-weight: 900;
+  }
+
+  &:first-child strong {
+    color: #65c98b;
+  }
+}
+
+.legenda {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 18px;
+  padding: 17px 20px;
+  margin-bottom: 40px;
+  background: #151515;
+  border: 1px solid #292929;
+  border-radius: 10px;
+
+  div {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #c4c4c4;
+    font-size: 11px;
+  }
+}
+
+.cor-legenda {
+  width: 10px;
+  height: 10px;
+  border-radius: 3px;
+
+  &.direto {
+    background: #4caf72;
+  }
+
+  &.segundo-playoff {
+    background: #d5ad55;
+  }
+
+  &.primeiro-playoff {
+    background: #5799d1;
+  }
+
+  &.eliminado {
+    background: #777;
+  }
+}
+
+.secao-ranking {
+  margin-bottom: 45px;
+}
+
+.titulo-secao {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+  margin-bottom: 20px;
+
+  .subtitulo {
+    color: #d5ad55;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+  }
+
+  h2 {
+    margin: 7px 0;
+    color: #fff;
+    font-size: 23px;
+    font-weight: 800;
+  }
+
+  p {
+    margin: 5px 0 0;
+    color: #999;
+    font-size: 12px;
+    line-height: 1.5;
+  }
+
+  .contador {
+    flex-shrink: 0;
+    padding: 8px 12px;
+    color: #d5ad55;
+    background: #242017;
+    border: 1px solid #514328;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 800;
+  }
+}
+
+.tabela-wrapper {
+  overflow-x: auto;
+  background: #141414;
+  border: 1px solid #292929;
+  border-radius: 12px;
+
+  table {
+    width: 100%;
+    min-width: 1050px;
+    border-collapse: collapse;
+    text-align: center;
+  }
+
+  thead {
+    background: #202020;
+
+    th {
+      padding: 15px 10px;
+      color: #aaa;
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 0.5px;
+      white-space: nowrap;
+    }
+  }
+
+  tbody tr {
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+    transition: background 0.2s;
+
+    &:hover {
+      filter: brightness(1.15);
+    }
+
+    td {
+      padding: 13px 10px;
+      color: #dedede;
+      font-size: 12px;
+      white-space: nowrap;
+    }
+  }
+
+  .classificado-direto {
+    background: rgba(54, 133, 82, 0.15);
+
+    .posicao,
+    .pontos {
+      color: #72d69a;
+      font-weight: 900;
+    }
+  }
+
+  .segundo-playoff {
+    background: rgba(184, 139, 47, 0.12);
+
+    .posicao,
+    .pontos {
+      color: #e4bd68;
+      font-weight: 900;
+    }
+  }
+}
+
+.jogador-coluna {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 190px;
+  text-align: left;
+
+  img,
+  .escudo-vazio {
+    width: 35px;
+    height: 35px;
+    flex-shrink: 0;
+    object-fit: contain;
+  }
+
+  .escudo-vazio {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #d5ad55;
+    background: #29251c;
+    border-radius: 50%;
+    font-weight: 900;
+  }
+
+  .dados-jogador {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+
+    strong {
+      color: #fff;
+      font-size: 12px;
+    }
+
+    span {
+      color: #999;
+      font-size: 10px;
+    }
+  }
+}
+
+.status {
+  display: inline-block;
+  padding: 6px 9px;
+  border-radius: 5px;
+  font-size: 9px;
+  font-weight: 900;
+  letter-spacing: 0.4px;
+}
+
+.status-direto {
+  color: #80e5a4;
+  background: rgba(54, 133, 82, 0.25);
+  border: 1px solid rgba(114, 214, 154, 0.25);
+}
+
+.status-playoff {
+  color: #edcb7d;
+  background: rgba(184, 139, 47, 0.2);
+  border: 1px solid rgba(228, 189, 104, 0.25);
+}
+
+.playoff-section {
+  .contador {
+    color: #83bce8;
+    background: rgba(54, 112, 160, 0.15);
+    border-color: rgba(87, 153, 209, 0.3);
+  }
+}
+
+.cards-jogadores {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.jogador-card {
+  padding: 17px;
+  background: #151515;
+  border: 1px solid #303030;
+  border-radius: 10px;
+}
+
+.playoff-card {
+  border-left: 3px solid #5799d1;
+  background: linear-gradient(110deg, rgba(44, 94, 137, 0.16), #151515 65%);
+}
+
+.posicao-grupo {
+  margin-bottom: 13px;
+  color: #83bce8;
+  font-size: 10px;
+  font-weight: 900;
+  letter-spacing: 1px;
+}
+
+.card-jogador-info {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  img,
+  .escudo-vazio {
+    width: 45px;
+    height: 45px;
+    flex-shrink: 0;
+    object-fit: contain;
+  }
+
+  .escudo-vazio {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #d5ad55;
+    background: #29251c;
+    border-radius: 50%;
+    font-size: 18px;
+    font-weight: 900;
+  }
+
+  div:last-child {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    min-width: 0;
+  }
+
+  strong {
+    color: #fff;
+    font-size: 13px;
+  }
+
+  span {
+    overflow: hidden;
+    color: #999;
+    font-size: 11px;
+    text-overflow: ellipsis;
+  }
+}
+
+.estatisticas-card {
+  display: flex;
+  gap: 20px;
+  padding-top: 13px;
+  margin-top: 13px;
+  border-top: 1px solid #303030;
+
+  span {
+    color: #999;
+    font-size: 10px;
+  }
+
+  strong {
+    color: #83bce8;
+    font-size: 13px;
+  }
+}
+
+.eliminados-section {
+  .jogador-card {
+    border-left: 3px solid #666;
+    background: #171717;
+    opacity: 0.8;
+  }
+
+  .posicao-grupo {
+    color: #999;
+  }
+
+  .estatisticas-card strong {
+    color: #aaa;
+  }
+
+  .contador {
+    color: #aaa;
+    background: #242424;
+    border-color: #444;
+  }
+}
+
+.estado-ranking,
+.sem-jogadores {
+  padding: 30px 20px;
+  color: #999;
+  text-align: center;
+  font-size: 13px;
+}
+
+.estado-ranking.erro {
+  color: #ff7777;
+
+  button {
+    display: block;
+    margin: 15px auto 0;
+    padding: 10px 18px;
+    color: #111;
+    background: #d5ad55;
+    border: 0;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 800;
+  }
+}
+
+@media (max-width: 768px) {
+  .ranking-container {
+    padding: 28px 14px 50px;
+  }
+
+  .resumo-ranking {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+  }
+
+  .resumo-card {
+    padding: 15px;
+
+    strong {
+      font-size: 25px;
+    }
+  }
+
+  .legenda {
+    gap: 12px;
+    padding: 15px;
+  }
+
+  .legenda div {
+    font-size: 10px;
+  }
+
+  .titulo-secao {
+    align-items: flex-start;
+
+    h2 {
+      font-size: 19px;
+    }
+  }
+
+  .cards-jogadores {
+    grid-template-columns: 1fr;
+  }
+
+  .jogador-card {
+    padding: 14px;
+  }
+}
+
+@media (max-width: 420px) {
+  .titulo-secao {
+    flex-direction: column;
+  }
+
+  .titulo-secao .contador {
+    align-self: flex-start;
+  }
+}
+
+
+/* PRIMEIRO PLAYOFF - AZUL VIBRANTE */
+.primeiro-playoff {
+  background: rgba(35, 130, 230, 0.13);
+}
+
+.primeiro-playoff .posicao {
+  color: #55aaff;
+  font-weight: 800;
+}
+
+.status-terceiro {
+  background: #1675d1;
+  color: #fff;
+}
+
+/* ELIMINADOS - VERMELHO */
+.eliminado {
+  background: rgba(220, 53, 69, 0.12);
+}
+
+.eliminado .posicao {
+  color: #ff626f;
+  font-weight: 800;
+}
+
+.status-eliminado {
+  background: #b52b38;
+  color: #fff;
+}

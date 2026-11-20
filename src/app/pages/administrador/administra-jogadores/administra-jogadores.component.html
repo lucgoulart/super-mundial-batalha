@@ -1,0 +1,411 @@
+<div class="players-container">
+
+  <!-- CABEÇALHO -->
+  <header class="page-header">
+    <div>
+      <span class="section-label">BATALHA DOS 12 / ADMINISTRAÇÃO</span>
+      <h1>Gerenciamento de jogadores</h1>
+      <p>Gerencie os participantes do campeonato em um só lugar.</p>
+    </div>
+
+ <button
+  type="button"
+  class="btn-add-player"
+  (click)="abrirCadastro()"
+  [disabled]="vagasDisponiveis === 0">
+
+  <span class="material-icons">add</span>
+  Cadastrar jogador
+
+</button>
+  </header>
+
+  <!-- INDICADORES -->
+  <section class="stats-grid">
+
+    <div class="stat-card">
+      <div class="stat-icon">
+        <span class="material-icons">groups</span>
+      </div>
+      <div>
+        <span>Jogadores cadastrados</span>
+        <strong>{{ totalJogadores }}<small>/32</small></strong>
+      </div>
+    </div>
+
+    <div class="stat-card">
+      <div class="stat-icon">
+        <span class="material-icons">person_add_alt</span>
+      </div>
+      <div>
+        <span>Vagas disponíveis</span>
+        <strong>{{ vagasDisponiveis }}</strong>
+      </div>
+    </div>
+
+    <div class="stat-card">
+      <div class="stat-icon">
+        <span class="material-icons">emoji_events</span>
+      </div>
+      <div>
+        <span>Ocupação do campeonato</span>
+        <strong>{{ percentualOcupacao }}%</strong>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- OCUPAÇÃO -->
+  <section class="occupancy-card">
+    <div class="occupancy-header">
+      <div>
+        <h3>Ocupação das vagas</h3>
+        <p>Limite máximo de 32 participantes.</p>
+      </div>
+
+      <strong>{{ totalJogadores }} / 32</strong>
+    </div>
+
+    <div class="progress-track">
+      <div
+        class="progress-fill"
+        [style.width.%]="percentualOcupacao">
+      </div>
+    </div>
+
+    <div class="occupancy-footer">
+      <span>{{ totalJogadores }} inscritos</span>
+      <span>{{ vagasDisponiveis }} vagas restantes</span>
+    </div>
+  </section>
+
+  <!-- LISTAGEM -->
+  <section class="players-list-card">
+
+    <div class="list-header">
+      <div>
+        <h2>Jogadores cadastrados</h2>
+        <p>Consulte, edite ou remova participantes.</p>
+      </div>
+
+      <span class="players-counter">
+        {{ jogadoresFiltrados.length }} jogadores
+      </span>
+    </div>
+
+    <!-- PESQUISA -->
+    <div class="search-container">
+      <span class="material-icons">search</span>
+
+      <input
+        type="text"
+        [(ngModel)]="termoPesquisa"
+        placeholder="Pesquisar por nome, ID FIFA ou time..."
+      />
+
+      <button
+        *ngIf="termoPesquisa"
+        type="button"
+        (click)="termoPesquisa = ''"
+        title="Limpar pesquisa">
+        <span class="material-icons">close</span>
+      </button>
+    </div>
+
+    <!-- LISTA VAZIA -->
+    <div class="empty-state" *ngIf="jogadoresFiltrados.length === 0">
+
+      <span class="material-icons empty-icon">
+        {{ totalJogadores === 0 ? 'sports_esports' : 'search_off' }}
+      </span>
+
+      <h3>
+        {{ totalJogadores === 0
+          ? 'Nenhum jogador cadastrado'
+          : 'Nenhum jogador encontrado' }}
+      </h3>
+
+      <p>
+        {{ totalJogadores === 0
+          ? 'Comece adicionando o primeiro participante.'
+          : 'Tente pesquisar utilizando outro termo.' }}
+      </p>
+
+      <button
+        *ngIf="totalJogadores === 0"
+        class="btn-add-player"
+        type="button"
+        (click)="abrirCadastro()">
+        <span class="material-icons">add</span>
+        Cadastrar primeiro jogador
+      </button>
+
+    </div>
+
+    <!-- JOGADORES -->
+    <div class="players-grid" *ngIf="jogadoresFiltrados.length > 0">
+
+      <article
+        class="player-card"
+        *ngFor="let jogador of jogadoresFiltrados; trackBy: trackById">
+
+        <div class="player-main">
+
+          <div class="team-shield">
+            <img
+              *ngIf="jogador.escudoUrl"
+              [src]="jogador.escudoUrl"
+              [alt]="'Escudo ' + jogador.time"
+            />
+
+            <span
+              *ngIf="!jogador.escudoUrl"
+              class="material-icons">
+              shield
+            </span>
+          </div>
+
+          <div class="player-info">
+  <h3>{{ jogador.nome }}</h3>
+  <span class="player-team">{{ jogador.time }}</span>
+
+  <span class="player-group" *ngIf="jogador.grupo">
+    Grupo {{ jogador.grupo }}
+  </span>
+
+  <span class="player-group" *ngIf="!jogador.grupo">
+    Grupo não definido
+  </span>
+</div>
+
+        </div>
+
+        <div class="player-details">
+       <div class="player-details">
+
+  <span>
+    <strong>Nome:</strong> {{ jogador.nome }}
+  </span>
+
+  <span>
+    <strong>Time:</strong> {{ jogador.time }}
+  </span>
+
+  <span>
+    <strong>Grupo:</strong> {{ jogador.grupo || 'Não definido' }}
+  </span>
+
+  <span>
+    <strong>ID FIFA:</strong> {{ jogador.idFifa }}
+  </span>
+
+  <span>
+    <strong>WhatsApp:</strong> {{ jogador.whatsapp }}
+  </span>
+
+</div>
+        </div>
+
+        <div class="player-actions">
+
+          <button
+            type="button"
+            class="btn-edit"
+            (click)="editarJogador(jogador)"
+            title="Editar jogador">
+            <span class="material-icons">edit</span>
+            Editar
+          </button>
+
+          <button
+            type="button"
+            class="btn-delete"
+            (click)="excluirJogador(jogador)"
+            title="Excluir jogador">
+            <span class="material-icons">delete_outline</span>
+            Excluir
+          </button>
+
+        </div>
+
+      </article>
+
+    </div>
+
+  </section>
+
+  <!-- MODAL DE CADASTRO / EDIÇÃO -->
+  <div
+    class="modal-overlay"
+    *ngIf="modalAberto"
+    (click)="fecharCadastro()">
+
+    <div
+      class="player-modal"
+      (click)="$event.stopPropagation()">
+
+      <div class="modal-header">
+        <div>
+          <span class="section-label">BATALHA DOS 12</span>
+
+          <h2>
+            {{ jogadorEmEdicao ? 'Editar jogador' : 'Novo jogador' }}
+          </h2>
+
+          <p>Preencha as informações do participante.</p>
+        </div>
+
+        <button
+          type="button"
+          class="btn-close"
+          (click)="fecharCadastro()">
+          <span class="material-icons">close</span>
+        </button>
+      </div>
+
+      <form (ngSubmit)="salvarJogador()">
+
+        <!-- ESCUDO -->
+        <div class="shield-upload-section">
+
+          <div class="shield-preview">
+            <img
+              *ngIf="escudoPreview"
+              [src]="escudoPreview"
+              alt="Pré-visualização do escudo"
+            />
+
+            <span
+              *ngIf="!escudoPreview"
+              class="material-icons">
+              shield
+            </span>
+          </div>
+
+          <div class="shield-upload-info">
+            <strong>Escudo do time</strong>
+            <p>Selecione uma imagem PNG, JPG ou WEBP. Máximo de 2 MB.</p>
+
+            <label class="btn-upload" for="escudoInput">
+              <span class="material-icons">upload</span>
+              Escolher imagem
+            </label>
+
+            <input
+              id="escudoInput"
+              type="file"
+              accept="image/png,image/jpeg,image/webp"
+              (change)="selecionarEscudo($event)"
+              hidden
+            />
+          </div>
+
+        </div>
+
+        <!-- CAMPOS -->
+        <div class="form-grid">
+
+          <div class="form-field full-width">
+            <label for="nome">Nome do jogador *</label>
+            <input
+              id="nome"
+              type="text"
+              name="nome"
+              [(ngModel)]="formulario.nome"
+              placeholder="Nome completo"
+              required
+              maxlength="100"
+            />
+          </div>
+
+          <div class="form-field">
+            <label for="whatsapp">WhatsApp *</label>
+            <input
+              id="whatsapp"
+              type="tel"
+              name="whatsapp"
+              [(ngModel)]="formulario.whatsapp"
+              placeholder="(11) 99999-9999"
+              required
+              maxlength="20"
+            />
+          </div>
+
+          <div class="form-field">
+            <label for="idFifa">ID FIFA *</label>
+            <input
+              id="idFifa"
+              type="text"
+              name="idFifa"
+              [(ngModel)]="formulario.idFifa"
+              placeholder="ID do jogador"
+              required
+              maxlength="30"
+            />
+          </div>
+
+          <div class="form-field full-width">
+            <label for="time">Nome do time *</label>
+            <input
+              id="time"
+              type="text"
+              name="time"
+              [(ngModel)]="formulario.time"
+              placeholder="Ex.: Real Madrid"
+              required
+              maxlength="100"
+            />
+          </div>
+
+          <div class="form-group">
+  <label for="grupo">Grupo</label>
+
+  <select
+    id="grupo"
+    name="grupo"
+    [(ngModel)]="formulario.grupo"
+    required
+  >
+    <option value="" disabled>Selecione um grupo</option>
+    <option value="A">Grupo A</option>
+    <option value="B">Grupo B</option>
+    <option value="C">Grupo C</option>
+    <option value="D">Grupo D</option>
+    <option value="E">Grupo E</option>
+    <option value="F">Grupo F</option>
+    <option value="G">Grupo G</option>
+    <option value="H">Grupo H</option>
+  </select>
+</div>
+
+        </div>
+
+        <div class="form-error" *ngIf="mensagemErro">
+          <span class="material-icons">error_outline</span>
+          {{ mensagemErro }}
+        </div>
+
+        <div class="modal-actions">
+
+          <button
+            type="button"
+            class="btn-cancel"
+            (click)="fecharCadastro()">
+            Cancelar
+          </button>
+
+          <button
+            type="submit"
+            class="btn-save">
+            <span class="material-icons">save</span>
+            {{ jogadorEmEdicao ? 'Salvar alterações' : 'Cadastrar jogador' }}
+          </button>
+
+        </div>
+
+      </form>
+
+    </div>
+  </div>
+
+</div>

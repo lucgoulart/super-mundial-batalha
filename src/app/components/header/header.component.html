@@ -1,0 +1,96 @@
+<header class="main-header">
+  <div class="header-container">
+
+    <a routerLink="/" class="brand" (click)="fecharMenu()">
+    <div class="brand-logo">
+        <img
+            src="assets/images/logo-batalha-12.png"
+            alt="Batalha dos 12"
+            class="brand-logo-img"
+        />
+        </div>
+
+      <div class="brand-info">
+        <h2>SUPER MUNDIAL</h2>
+        <span>BATALHA DOS 12</span>
+      </div>
+    </a>
+
+    <button
+      class="menu-toggle"
+      type="button"
+      (click)="toggleMenu()"
+      [attr.aria-expanded]="menuAberto"
+      aria-label="Alternar menu de navegação">
+
+      <span class="menu-label">MENU</span>
+
+      <span class="hamburger" [class.open]="menuAberto">
+        <span></span>
+        <span></span>
+        <span></span>
+      </span>
+
+    </button>
+
+    <nav class="main-nav" [class.menu-open]="menuAberto">
+
+      <a routerLink="/" routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: true }"
+        (click)="fecharMenu()">INÍCIO</a>
+
+
+      <a routerLink="/ranking" routerLinkActive="active"
+        (click)="fecharMenu()">RANKING GERAL</a>
+          <a routerLink="/partidas" routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: true }"
+        (click)="fecharMenu()">PARTIDAS</a>
+
+      <a routerLink="/grupos" routerLinkActive="active"
+        (click)="fecharMenu()">GRUPOS</a>
+
+<a
+  *ngIf="mataMataLiberado"
+  routerLink="/mata-mata"
+  routerLinkActive="active"
+  (click)="fecharMenu()">
+  MATA MATA
+</a>
+
+<span
+  *ngIf="!mataMataLiberado"
+  class="mata-mata-bloqueado"
+  title="O mata-mata será liberado após a conclusão da fase de grupos">
+
+  <span class="mata-mata-nome">
+    MATA MATA
+  </span>
+
+  <span class="mata-mata-lock">
+    🔒
+  </span>
+</span>
+
+      <a routerLink="/jogadores" routerLinkActive="active"
+        (click)="fecharMenu()">JOGADORES</a>
+
+      <a routerLink="/formato" routerLinkActive="active"
+        (click)="fecharMenu()">FORMATO</a>
+
+     <a
+  href="https://libertadores-batalha-dos-12.vercel.app/campeoes"
+  target="_blank"
+  rel="noopener noreferrer"
+  (click)="fecharMenu()">
+  CAMPEÕES DOS 12
+</a>
+      <a routerLink="/regulamento" routerLinkActive="active"
+        (click)="fecharMenu()">REGULAMENTO</a>
+
+      <a routerLink="/administrador" routerLinkActive="active"
+        (click)="fecharMenu()">ADMINISTRADOR</a>
+
+    </nav>
+
+  </div>
+</header>

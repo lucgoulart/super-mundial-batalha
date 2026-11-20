@@ -1,0 +1,225 @@
+
+<div class="partidas-publicas">
+
+  <!-- CABEÇALHO -->
+  <section class="cabecalho">
+    <div>
+      <span class="subtitulo">SUPERMUNDIAL • BATALHA DOS 12</span>
+      <h1>Calendário de partidas</h1>
+      <p>Acompanhe os confrontos, conheça seus adversários e confira os resultados.</p>
+    </div>
+  </section>
+
+  <!-- RESUMO -->
+  <section class="resumo">
+    <div class="resumo-card">
+      <span>Total de partidas</span>
+      <strong>{{ totalPartidas }}</strong>
+    </div>
+
+    <div class="resumo-card">
+      <span>Realizadas</span>
+      <strong>{{ partidasRealizadas }}</strong>
+    </div>
+
+    <div class="resumo-card">
+      <span>Pendentes</span>
+      <strong>{{ partidasPendentes }}</strong>
+    </div>
+  </section>
+
+  <!-- FILTROS -->
+ <!-- FASES DO CAMPEONATO -->
+<section class="fases-campeonato">
+
+  <span class="titulo-fases">ACOMPANHE O CAMPEONATO</span>
+
+  <div class="opcoes-fases">
+    <button
+      *ngFor="let fase of fases"
+      type="button"
+      [class.ativo]="faseSelecionada === fase.valor"
+      (click)="selecionarFase(fase.valor)">
+
+      {{ fase.nome }}
+
+      <small>{{ totalDaFase(fase.valor) }}</small>
+    </button>
+  </div>
+
+</section>
+
+<!-- FILTROS DOS GRUPOS -->
+<section class="filtros" *ngIf="faseSelecionada === 'grupos'">
+
+  <div class="filtro-grupo">
+    <span>SELECIONE O GRUPO</span>
+
+    <div class="opcoes-grupo">
+      <button
+        *ngFor="let grupo of grupos"
+        type="button"
+        [class.ativo]="grupoSelecionado === grupo"
+        (click)="selecionarGrupo(grupo)">
+        {{ grupo }}
+      </button>
+    </div>
+  </div>
+
+  <div class="filtro-turno">
+    <span>RODADA</span>
+
+    <div class="opcoes-turno">
+      <button
+        type="button"
+        [class.ativo]="turnoSelecionado === 1"
+        (click)="selecionarTurno(1)">
+        <span>IDA</span>
+        <small>1º turno</small>
+      </button>
+
+      <button
+        type="button"
+        [class.ativo]="turnoSelecionado === 2"
+        (click)="selecionarTurno(2)">
+        <span>VOLTA</span>
+        <small>2º turno</small>
+      </button>
+    </div>
+  </div>
+
+</section> 
+  <!-- CARREGAMENTO -->
+  <div class="mensagem-estado" *ngIf="carregando">
+    Carregando calendário de partidas...
+  </div>
+
+  <!-- ERRO -->
+  <div class="mensagem-estado erro" *ngIf="!carregando && erro">
+    {{ erro }}
+    <button type="button" (click)="carregarPartidas()">Tentar novamente</button>
+  </div>
+
+  <!-- PARTIDAS -->
+  <section class="conteudo-partidas" *ngIf="!carregando && !erro">
+
+ <div>
+  <span class="subtitulo">{{ tituloFase }}</span>
+
+  <h2>
+    <ng-container *ngIf="faseSelecionada === 'grupos'; else tituloEliminatorias">
+      {{ grupoSelecionado === 'Todos' ? 'Todos os grupos' : 'Grupo ' + grupoSelecionado }}
+      <span>• {{ turnoSelecionado === 1 ? 'Ida' : 'Volta' }}</span>
+    </ng-container>
+
+    <ng-template #tituloEliminatorias>
+      {{ tituloFase }}
+    </ng-template>
+  </h2>
+</div>
+
+    <div class="lista-partidas" *ngIf="partidasFiltradas.length > 0">
+
+      <article class="partida-card" *ngFor="let partida of partidasFiltradas">
+
+        <div class="partida-cabecalho">
+          <span class="grupo">
+  {{ partida.fase === 'grupos'
+      ? 'GRUPO ' + partida.grupo
+      : getNomeFase(partida.fase) }}
+</span>
+
+          <span
+            class="status"
+            [class.realizada]="partida.status === 'realizada'">
+            {{ partida.status === 'realizada' ? 'PARTIDA REALIZADA' : 'AGUARDANDO RESULTADO' }}
+          </span>
+        </div>
+
+        <div class="confronto">
+
+          <!-- MANDANTE -->
+          <div class="equipe mandante">
+<img
+  *ngIf="partida.jogador_casa?.escudoUrl"
+  [src]="partida.jogador_casa?.escudoUrl"
+  [alt]="partida.jogador_casa?.nome_time">
+
+<div class="escudo-vazio" *ngIf="!partida.jogador_casa?.escudoUrl">
+  {{ partida.jogador_casa?.nome_time?.charAt(0) || '?' }}
+</div>
+            <div class="dados-equipe">
+              <strong>{{ partida.jogador_casa?.nome_time || 'Time não informado' }}</strong>
+              <span>{{ partida.jogador_casa?.nome || 'Jogador não encontrado' }}</span>
+
+              <a
+                *ngIf="partida.jogador_casa?.whatsapp"
+                [href]="getLinkWhatsApp(partida.jogador_casa?.whatsapp || '')"
+                target="_blank"
+                rel="noopener noreferrer">
+                <i class="fab fa-whatsapp"></i>
+                Chamar jogador
+              </a>
+            </div>
+
+          </div>
+
+          <!-- PLACAR -->
+          <div class="placar">
+
+            <ng-container *ngIf="partida.status === 'realizada'; else aguardando">
+              <strong>{{ partida.gols_casa }}</strong>
+              <span>x</span>
+              <strong>{{ partida.gols_visitante }}</strong>
+            </ng-container>
+
+            <ng-template #aguardando>
+              <span class="versus">VS</span>
+              <small>A definir</small>
+            </ng-template>
+
+          </div>
+
+          <!-- VISITANTE -->
+    <!-- VISITANTE -->
+<div class="equipe visitante">
+
+  <img
+    *ngIf="partida.jogador_visitante?.escudoUrl"
+    [src]="partida.jogador_visitante?.escudoUrl"
+    [alt]="partida.jogador_visitante?.nome_time">
+
+  <div
+    class="escudo-vazio"
+    *ngIf="!partida.jogador_visitante?.escudoUrl">
+    {{ partida.jogador_visitante?.nome_time?.charAt(0) || '?' }}
+  </div>
+
+  <div class="dados-equipe">
+    <strong>{{ partida.jogador_visitante?.nome_time || 'Time não informado' }}</strong>
+    <span>{{ partida.jogador_visitante?.nome || 'Jogador não encontrado' }}</span>
+
+    <a
+      *ngIf="partida.jogador_visitante?.whatsapp"
+      [href]="getLinkWhatsApp(partida.jogador_visitante?.whatsapp || '')"
+      target="_blank"
+      rel="noopener noreferrer">
+      <i class="fab fa-whatsapp"></i>
+      Chamar jogador
+    </a>
+  </div>
+
+</div>
+        </div>
+
+      </article>
+
+    </div>
+
+ <div class="mensagem-estado" *ngIf="partidasFiltradas.length === 0">
+  {{ mensagemVazia }}
+</div>
+
+  </section>
+
+</div>

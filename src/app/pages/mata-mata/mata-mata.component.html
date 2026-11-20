@@ -1,0 +1,699 @@
+<div class="mata-mata-container">
+
+  <!-- CABEÇALHO -->
+  <section class="cabecalho-mata-mata">
+
+    <span class="subtitulo">
+      SUPERMUNDIAL • BATALHA DOS 12
+    </span>
+
+    <h1>MATA-MATA</h1>
+
+    <p>
+      Acompanhe o caminho dos jogadores até a grande decisão.
+    </p>
+
+  </section>
+
+
+  <!-- RESUMO -->
+  <section class="resumo-mata-mata">
+
+    <div class="resumo-card">
+      <span>Partidas eliminatórias</span>
+      <strong>{{ totalPartidas }}</strong>
+    </div>
+
+    <div class="resumo-card">
+      <span>Partidas realizadas</span>
+      <strong>{{ totalConcluidas }}</strong>
+    </div>
+
+    <div class="resumo-card">
+      <span>Partidas pendentes</span>
+      <strong>{{ totalPendentes }}</strong>
+    </div>
+
+  </section>
+
+
+  <!-- PLAYOFFS -->
+  <section class="playoffs-section">
+
+    <div class="titulo-fase">
+      <span>FASE PRELIMINAR</span>
+      <h2>Playoffs</h2>
+      <p>
+        Confrontos que definiram os classificados para as Oitavas de Final.
+      </p>
+    </div>
+
+    <div class="playoffs">
+
+      <!-- PLAYOFF 1 -->
+      <div class="playoff-bloco">
+
+        <div class="playoff-titulo">
+          <span>PLAYOFF 1</span>
+          <small>
+            {{ partidasDaFase('playoff_1').length }} confrontos
+          </small>
+        </div>
+
+        <div class="playoff-jogos">
+
+          <article
+            class="mini-partida"
+            *ngFor="let partida of partidasDaFase('playoff_1')">
+
+            <div
+              class="mini-equipe"
+              [class.vencedor]="jogadorVenceu(partida, 'casa')">
+
+              <div class="mini-time">
+
+                <img
+                  *ngIf="partida.jogador_casa?.escudoUrl"
+                  [src]="partida.jogador_casa?.escudoUrl"
+                  [alt]="partida.jogador_casa?.nome_time">
+
+                <div
+                  class="mini-escudo"
+                  *ngIf="!partida.jogador_casa?.escudoUrl">
+                  {{ partida.jogador_casa?.nome_time?.charAt(0) || '?' }}
+                </div>
+
+                <div>
+                  <strong>
+                    {{ nomeTime(partida.jogador_casa) }}
+                  </strong>
+
+                  <small>
+                    {{ nomeJogador(partida.jogador_casa) }}
+                  </small>
+                </div>
+
+              </div>
+
+              <b>
+                {{ partida.status === 'realizada' ? partida.gols_casa : '-' }}
+              </b>
+
+            </div>
+
+
+            <div class="mini-linha"></div>
+
+
+            <div
+              class="mini-equipe"
+              [class.vencedor]="jogadorVenceu(partida, 'visitante')">
+
+              <div class="mini-time">
+
+                <img
+                  *ngIf="partida.jogador_visitante?.escudoUrl"
+                  [src]="partida.jogador_visitante?.escudoUrl"
+                  [alt]="partida.jogador_visitante?.nome_time">
+
+                <div
+                  class="mini-escudo"
+                  *ngIf="!partida.jogador_visitante?.escudoUrl">
+                  {{ partida.jogador_visitante?.nome_time?.charAt(0) || '?' }}
+                </div>
+
+                <div>
+                  <strong>
+                    {{ nomeTime(partida.jogador_visitante) }}
+                  </strong>
+
+                  <small>
+                    {{ nomeJogador(partida.jogador_visitante) }}
+                  </small>
+                </div>
+
+              </div>
+
+              <b>
+                {{ partida.status === 'realizada' ? partida.gols_visitante : '-' }}
+              </b>
+
+            </div>
+
+          </article>
+
+        </div>
+
+      </div>
+
+
+      <!-- PLAYOFF 2 -->
+      <div class="playoff-bloco">
+
+        <div class="playoff-titulo">
+          <span>PLAYOFF 2</span>
+          <small>
+            {{ partidasDaFase('playoff_2').length }} confrontos
+          </small>
+        </div>
+
+        <div class="playoff-jogos">
+
+          <article
+            class="mini-partida"
+            *ngFor="let partida of partidasDaFase('playoff_2')">
+
+            <div
+              class="mini-equipe"
+              [class.vencedor]="jogadorVenceu(partida, 'casa')">
+
+              <div class="mini-time">
+
+                <img
+                  *ngIf="partida.jogador_casa?.escudoUrl"
+                  [src]="partida.jogador_casa?.escudoUrl"
+                  [alt]="partida.jogador_casa?.nome_time">
+
+                <div
+                  class="mini-escudo"
+                  *ngIf="!partida.jogador_casa?.escudoUrl">
+                  {{ partida.jogador_casa?.nome_time?.charAt(0) || '?' }}
+                </div>
+
+                <div>
+                  <strong>
+                    {{ nomeTime(partida.jogador_casa) }}
+                  </strong>
+
+                  <small>
+                    {{ nomeJogador(partida.jogador_casa) }}
+                  </small>
+                </div>
+
+              </div>
+
+              <b>
+                {{ partida.status === 'realizada' ? partida.gols_casa : '-' }}
+              </b>
+
+            </div>
+
+            <div class="mini-linha"></div>
+
+            <div
+              class="mini-equipe"
+              [class.vencedor]="jogadorVenceu(partida, 'visitante')">
+
+              <div class="mini-time">
+
+                <img
+                  *ngIf="partida.jogador_visitante?.escudoUrl"
+                  [src]="partida.jogador_visitante?.escudoUrl"
+                  [alt]="partida.jogador_visitante?.nome_time">
+
+                <div
+                  class="mini-escudo"
+                  *ngIf="!partida.jogador_visitante?.escudoUrl">
+                  {{ partida.jogador_visitante?.nome_time?.charAt(0) || '?' }}
+                </div>
+
+                <div>
+                  <strong>
+                    {{ nomeTime(partida.jogador_visitante) }}
+                  </strong>
+
+                  <small>
+                    {{ nomeJogador(partida.jogador_visitante) }}
+                  </small>
+                </div>
+
+              </div>
+
+              <b>
+                {{ partida.status === 'realizada' ? partida.gols_visitante : '-' }}
+              </b>
+
+            </div>
+
+          </article>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- CHAVE PRINCIPAL -->
+  <section class="chave-section">
+
+    <div class="titulo-fase principal">
+
+      <span>CHAVE PRINCIPAL</span>
+
+      <h2>Corrida pelo título</h2>
+
+      <p>
+        O caminho das Oitavas de Final até a grande decisão.
+      </p>
+
+    </div>
+
+
+    <div class="bracket-wrapper">
+
+      <div class="bracket">
+
+
+        <!-- OITAVAS -->
+        <div class="round oitavas">
+
+          <div class="round-header">
+            <span>OITAVAS</span>
+            <small>8 confrontos</small>
+          </div>
+
+          <div class="round-body">
+
+            <article
+              class="bracket-partida"
+              *ngFor="let partida of partidasDaFase('oitavas'); let i = index">
+
+              <div
+                class="bracket-equipe"
+                [class.vencedor]="jogadorVenceu(partida, 'casa')">
+
+                <div class="bracket-time">
+
+                  <img
+                    *ngIf="partida.jogador_casa?.escudoUrl"
+                    [src]="partida.jogador_casa?.escudoUrl"
+                    [alt]="partida.jogador_casa?.nome_time">
+
+                  <div
+                    class="bracket-escudo"
+                    *ngIf="!partida.jogador_casa?.escudoUrl">
+                    {{ partida.jogador_casa?.nome_time?.charAt(0) || '?' }}
+                  </div>
+
+                  <div class="bracket-nomes">
+                    <strong>
+                      {{ nomeTime(partida.jogador_casa) }}
+                    </strong>
+
+                    <small>
+                      {{ nomeJogador(partida.jogador_casa) }}
+                    </small>
+                  </div>
+
+                </div>
+
+                <b>
+                  {{ partida.status === 'realizada' ? partida.gols_casa : '-' }}
+                </b>
+
+              </div>
+
+
+              <div class="bracket-equipe"
+                [class.vencedor]="jogadorVenceu(partida, 'visitante')">
+
+                <div class="bracket-time">
+
+                  <img
+                    *ngIf="partida.jogador_visitante?.escudoUrl"
+                    [src]="partida.jogador_visitante?.escudoUrl"
+                    [alt]="partida.jogador_visitante?.nome_time">
+
+                  <div
+                    class="bracket-escudo"
+                    *ngIf="!partida.jogador_visitante?.escudoUrl">
+                    {{ partida.jogador_visitante?.nome_time?.charAt(0) || '?' }}
+                  </div>
+
+                  <div class="bracket-nomes">
+                    <strong>
+                      {{ nomeTime(partida.jogador_visitante) }}
+                    </strong>
+
+                    <small>
+                      {{ nomeJogador(partida.jogador_visitante) }}
+                    </small>
+                  </div>
+
+                </div>
+
+                <b>
+                  {{ partida.status === 'realizada' ? partida.gols_visitante : '-' }}
+                </b>
+
+              </div>
+
+            </article>
+
+          </div>
+
+        </div>
+
+
+        <!-- QUARTAS -->
+        <div class="round quartas">
+
+          <div class="round-header">
+            <span>QUARTAS</span>
+            <small>4 confrontos</small>
+          </div>
+
+          <div class="round-body">
+
+            <article
+              class="bracket-partida"
+              *ngFor="let partida of partidasDaFase('quartas')">
+
+              <div
+                class="bracket-equipe"
+                [class.vencedor]="jogadorVenceu(partida, 'casa')">
+
+                <div class="bracket-time">
+
+                  <img
+                    *ngIf="partida.jogador_casa?.escudoUrl"
+                    [src]="partida.jogador_casa?.escudoUrl"
+                    [alt]="partida.jogador_casa?.nome_time">
+
+                  <div
+                    class="bracket-escudo"
+                    *ngIf="!partida.jogador_casa?.escudoUrl">
+                    {{ partida.jogador_casa?.nome_time?.charAt(0) || '?' }}
+                  </div>
+
+                  <div class="bracket-nomes">
+                    <strong>
+                      {{ nomeTime(partida.jogador_casa) }}
+                    </strong>
+
+                    <small>
+                      {{ nomeJogador(partida.jogador_casa) }}
+                    </small>
+                  </div>
+
+                </div>
+
+                <b>
+                  {{ partida.status === 'realizada' ? partida.gols_casa : '-' }}
+                </b>
+
+              </div>
+
+              <div
+                class="bracket-equipe"
+                [class.vencedor]="jogadorVenceu(partida, 'visitante')">
+
+                <div class="bracket-time">
+
+                  <img
+                    *ngIf="partida.jogador_visitante?.escudoUrl"
+                    [src]="partida.jogador_visitante?.escudoUrl"
+                    [alt]="partida.jogador_visitante?.nome_time">
+
+                  <div
+                    class="bracket-escudo"
+                    *ngIf="!partida.jogador_visitante?.escudoUrl">
+                    {{ partida.jogador_visitante?.nome_time?.charAt(0) || '?' }}
+                  </div>
+
+                  <div class="bracket-nomes">
+                    <strong>
+                      {{ nomeTime(partida.jogador_visitante) }}
+                    </strong>
+
+                    <small>
+                      {{ nomeJogador(partida.jogador_visitante) }}
+                    </small>
+                  </div>
+
+                </div>
+
+                <b>
+                  {{ partida.status === 'realizada' ? partida.gols_visitante : '-' }}
+                </b>
+
+              </div>
+
+            </article>
+
+          </div>
+
+        </div>
+
+
+        <!-- SEMIFINAIS -->
+        <div class="round semifinais">
+
+          <div class="round-header">
+            <span>SEMIFINAIS</span>
+            <small>2 confrontos</small>
+          </div>
+
+          <div class="round-body">
+
+            <article
+              class="bracket-partida"
+              *ngFor="let partida of partidasDaFase('semifinais')">
+
+              <div
+                class="bracket-equipe"
+                [class.vencedor]="jogadorVenceu(partida, 'casa')">
+
+                <div class="bracket-time">
+
+                  <img
+                    *ngIf="partida.jogador_casa?.escudoUrl"
+                    [src]="partida.jogador_casa?.escudoUrl"
+                    [alt]="partida.jogador_casa?.nome_time">
+
+                  <div
+                    class="bracket-escudo"
+                    *ngIf="!partida.jogador_casa?.escudoUrl">
+                    {{ partida.jogador_casa?.nome_time?.charAt(0) || '?' }}
+                  </div>
+
+                  <div class="bracket-nomes">
+                    <strong>
+                      {{ nomeTime(partida.jogador_casa) }}
+                    </strong>
+
+                    <small>
+                      {{ nomeJogador(partida.jogador_casa) }}
+                    </small>
+                  </div>
+
+                </div>
+
+                <b>
+                  {{ partida.status === 'realizada' ? partida.gols_casa : '-' }}
+                </b>
+
+              </div>
+
+              <div
+                class="bracket-equipe"
+                [class.vencedor]="jogadorVenceu(partida, 'visitante')">
+
+                <div class="bracket-time">
+
+                  <img
+                    *ngIf="partida.jogador_visitante?.escudoUrl"
+                    [src]="partida.jogador_visitante?.escudoUrl"
+                    [alt]="partida.jogador_visitante?.nome_time">
+
+                  <div
+                    class="bracket-escudo"
+                    *ngIf="!partida.jogador_visitante?.escudoUrl">
+                    {{ partida.jogador_visitante?.nome_time?.charAt(0) || '?' }}
+                  </div>
+
+                  <div class="bracket-nomes">
+                    <strong>
+                      {{ nomeTime(partida.jogador_visitante) }}
+                    </strong>
+
+                    <small>
+                      {{ nomeJogador(partida.jogador_visitante) }}
+                    </small>
+                  </div>
+
+                </div>
+
+                <b>
+                  {{ partida.status === 'realizada' ? partida.gols_visitante : '-' }}
+                </b>
+
+              </div>
+
+            </article>
+
+          </div>
+
+        </div>
+
+
+        <!-- FINAL -->
+        <div class="round final">
+
+          <div class="round-header">
+            <span>GRANDE FINAL</span>
+            <small>1 confronto</small>
+          </div>
+
+          <div class="round-body">
+
+            <article
+              class="bracket-partida final-partida"
+              *ngFor="let partida of partidasDaFase('final')">
+
+              <div
+                class="bracket-equipe"
+                [class.vencedor]="jogadorVenceu(partida, 'casa')">
+
+                <div class="bracket-time">
+
+                  <img
+                    *ngIf="partida.jogador_casa?.escudoUrl"
+                    [src]="partida.jogador_casa?.escudoUrl"
+                    [alt]="partida.jogador_casa?.nome_time">
+
+                  <div
+                    class="bracket-escudo"
+                    *ngIf="!partida.jogador_casa?.escudoUrl">
+                    {{ partida.jogador_casa?.nome_time?.charAt(0) || '?' }}
+                  </div>
+
+                  <div class="bracket-nomes">
+                    <strong>
+                      {{ nomeTime(partida.jogador_casa) }}
+                    </strong>
+
+                    <small>
+                      {{ nomeJogador(partida.jogador_casa) }}
+                    </small>
+                  </div>
+
+                </div>
+
+                <b>
+                  {{ partida.status === 'realizada' ? partida.gols_casa : '-' }}
+                </b>
+
+              </div>
+
+
+              <div
+                class="bracket-equipe"
+                [class.vencedor]="jogadorVenceu(partida, 'visitante')">
+
+                <div class="bracket-time">
+
+                  <img
+                    *ngIf="partida.jogador_visitante?.escudoUrl"
+                    [src]="partida.jogador_visitante?.escudoUrl"
+                    [alt]="partida.jogador_visitante?.nome_time">
+
+                  <div
+                    class="bracket-escudo"
+                    *ngIf="!partida.jogador_visitante?.escudoUrl">
+                    {{ partida.jogador_visitante?.nome_time?.charAt(0) || '?' }}
+                  </div>
+
+                  <div class="bracket-nomes">
+                    <strong>
+                      {{ nomeTime(partida.jogador_visitante) }}
+                    </strong>
+
+                    <small>
+                      {{ nomeJogador(partida.jogador_visitante) }}
+                    </small>
+                  </div>
+
+                </div>
+
+                <b>
+                  {{ partida.status === 'realizada' ? partida.gols_visitante : '-' }}
+                </b>
+
+              </div>
+
+
+              <div class="final-status">
+
+                <span
+                  *ngIf="partida.status === 'pendente'">
+                  AGUARDANDO RESULTADO
+                </span>
+
+                <span
+                  class="finalizada"
+                  *ngIf="partida.status === 'realizada'">
+                  FINALIZADA
+                </span>
+
+              </div>
+
+            </article>
+
+          </div>
+
+        </div>
+
+
+        <!-- CAMPEÃO -->
+        <div class="campeao-bracket">
+
+          <div
+            class="trofeu"
+            [class.ativo]="campeao">
+            🏆
+          </div>
+
+          <span>CAMPEÃO</span>
+
+          <ng-container *ngIf="campeao; else aguardandoCampeao">
+
+            <img
+              *ngIf="campeao.escudoUrl"
+              [src]="campeao.escudoUrl"
+              [alt]="campeao.nome_time">
+
+            <div
+              class="campeao-escudo-vazio"
+              *ngIf="!campeao.escudoUrl">
+              {{ campeao.nome_time?.charAt(0) || '?' }}
+            </div>
+
+            <strong>{{ campeao.nome_time }}</strong>
+            <small>{{ campeao.nome }}</small>
+
+          </ng-container>
+
+          <ng-template #aguardandoCampeao>
+
+            <div class="campeao-aguardando">
+              ?
+            </div>
+
+            <strong>A definir</strong>
+            <small>Vencedor da Final</small>
+
+          </ng-template>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+</div>
