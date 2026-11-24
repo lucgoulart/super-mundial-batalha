@@ -316,44 +316,43 @@ export class AdministraJogadoresComponent implements OnInit {
     }
   }
 
-  // EXCLUIR JOGADOR
+// EXCLUIR JOGADOR
 
-  async excluirJogador(jogador: Jogador): Promise<void> {
-    if (this.carregando) {
-      return;
-    }
-
-    const confirmar = window.confirm(
-      `Deseja realmente excluir o jogador ${jogador.nome}?`
-    );
-
-    if (!confirmar) {
-      return;
-    }
-
-    this.carregando = true;
-    this.mensagemErro = '';
-
-    try {
-      await this.adminAuthService.executarOperacao({
-        action: 'delete',
-        id: jogador.id
-      });
-
-      this.jogadores = this.jogadores.filter(
-        item => item.id !== jogador.id
-      );
-
-    } catch (error: any) {
-      console.error('Erro ao excluir jogador:', error);
-
-      this.mensagemErro =
-        error?.message || 'Não foi possível excluir o jogador.';
-
-    } finally {
-      this.carregando = false;
-    }
+async excluirJogador(jogador: Jogador): Promise<void> {
+  if (this.carregando) {
+    return;
   }
+
+  const confirmar = window.confirm(
+    `Deseja realmente excluir ${jogador.nome}?\n\n` +
+    'A exclusão direta será bloqueada caso existam partidas vinculadas.'
+  );
+
+  if (!confirmar) {
+    return;
+  }
+
+  this.carregando = true;
+  this.mensagemErro = '';
+
+  try {
+    await this.adminAuthService.executarOperacao({
+      action: 'delete',
+      id: jogador.id
+    });
+
+    await this.carregarJogadores();
+
+  } catch (error: any) {
+    console.error('Erro ao excluir jogador:', error);
+
+    this.mensagemErro =
+      error?.message || 'Não foi possível excluir o jogador.';
+
+  } finally {
+    this.carregando = false;
+  }
+}
 
   // FECHAR MODAL
 
